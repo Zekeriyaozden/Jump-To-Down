@@ -9,10 +9,13 @@ public class PlayerController : MonoBehaviour
     private float mouseDrag;
     private Vector3 firstRotationTriangle;
     private bool isSwipping;
+    private GameObject gm;
+    public bool isGamePlay;
     void Start()
     {
+        gm = GameObject.Find("GameManager");
         isSwipping = false;
-
+        isGamePlay = true;
     }
 
     private void inGameInputs()
@@ -49,6 +52,15 @@ public class PlayerController : MonoBehaviour
     
     void Update()
     {
-        inGameInputs();
+
+        if (gm.GetComponent<GameManager>().isGameOver)
+        {
+            isGamePlay = false;
+        }
+        
+        if (isGamePlay)
+        {
+            inGameInputs();   
+        }
     }
 }

@@ -89,6 +89,13 @@ public class StickController : MonoBehaviour
         gm.GetComponent<GameManager>().jumperPurple = false;
         if (other.tag == "Player" && gameObject.tag == "purple")
         {
+            
+            if (gm.GetComponent<GameManager>().currentColor != 0)
+            {
+                Time.timeScale = 0f;
+                gm.GetComponent<GameManager>().isGameOver = true;
+            }
+            
             int selectMaterial;
             do
             {
@@ -119,6 +126,12 @@ public class StickController : MonoBehaviour
         //---------------------------------------------------------
         if (other.tag == "Player" && gameObject.tag == "blue")
         {
+            
+            if (gm.GetComponent<GameManager>().currentColor != 1)
+            {
+                Time.timeScale = 0f;
+                gm.GetComponent<GameManager>().isGameOver = true;
+            }
             
             int selectMaterial;
             do
@@ -151,6 +164,11 @@ public class StickController : MonoBehaviour
         //---------------------------------------------------------
         if (other.tag == "Player" && gameObject.tag == "yellow")
         {
+            if (gm.GetComponent<GameManager>().currentColor != 2)
+            {
+                Time.timeScale = 0f;
+                gm.GetComponent<GameManager>().isGameOver = true;
+            }
             int selectMaterial;
             do
             {

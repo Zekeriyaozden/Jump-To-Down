@@ -18,6 +18,7 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/ColorController.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/StickController.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="2CnQ2HX0IMT2RPwv2MXa4F3867U" />
@@ -60,7 +61,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1659435663163</updated>
-      <workItem from="1659435676474" duration="5935000" />
+      <workItem from="1659435676474" duration="6816000" />
     </task>
     <servers />
   </component>
