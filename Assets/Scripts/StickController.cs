@@ -107,7 +107,7 @@ public class StickController : MonoBehaviour
 
             Material[] s = new Material[1];
             s[0] = gm.GetComponent<GameManager>().materials[selectMaterial];
-            mainChar.GetComponent<MeshRenderer>().materials = s;
+            mainChar.transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().materials = s;
             gm.GetComponent<GameManager>().currentColor = selectMaterial;
             
             
@@ -147,7 +147,7 @@ public class StickController : MonoBehaviour
 
             Material[] s = new Material[1];
             s[0] = gm.GetComponent<GameManager>().materials[selectMaterial];
-            mainChar.GetComponent<MeshRenderer>().materials = s;
+            mainChar.transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().materials = s;
             gm.GetComponent<GameManager>().currentColor = selectMaterial;
             
             //25-95
@@ -187,7 +187,7 @@ public class StickController : MonoBehaviour
 
             Material[] s = new Material[1];
             s[0] = gm.GetComponent<GameManager>().materials[selectMaterial];
-            mainChar.GetComponent<MeshRenderer>().materials = s;
+            mainChar.transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().materials = s;
             gm.GetComponent<GameManager>().currentColor = selectMaterial;
             
             //265-335
