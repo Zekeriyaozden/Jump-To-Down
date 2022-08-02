@@ -94,6 +94,9 @@ public class StickController : MonoBehaviour
             {
                 Time.timeScale = 0f;
                 gm.GetComponent<GameManager>().isGameOver = true;
+            }else
+            {
+                gm.GetComponent<GameManager>().skor++;
             }
             
             int selectMaterial;
@@ -131,6 +134,9 @@ public class StickController : MonoBehaviour
             {
                 Time.timeScale = 0f;
                 gm.GetComponent<GameManager>().isGameOver = true;
+            }else
+            {
+                gm.GetComponent<GameManager>().skor++;
             }
             
             int selectMaterial;
@@ -168,6 +174,10 @@ public class StickController : MonoBehaviour
             {
                 Time.timeScale = 0f;
                 gm.GetComponent<GameManager>().isGameOver = true;
+            }
+            else
+            {
+                gm.GetComponent<GameManager>().skor++;
             }
             int selectMaterial;
             do
