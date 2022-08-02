@@ -21,6 +21,7 @@ public class StickController : MonoBehaviour
         flag = true;
         gm = GameObject.Find("GameManager");
         k = 0;
+        horizDir = 0;
     }
 
     // Update is called once per frame
@@ -29,7 +30,8 @@ public class StickController : MonoBehaviour
         progress = 30f / speed;
         if (gm.GetComponent<GameManager>().jumperBlue)
         {
-            //200-125
+            //215-145
+
             direction = Mathf.Lerp(1, -1, k);
             if (k < 1 && flag)
             {
@@ -37,7 +39,7 @@ public class StickController : MonoBehaviour
             }
             
             mainChar.transform.Translate(new Vector3(0,direction,0) * Time.deltaTime * speed);
-            mainChar.transform.Translate(new Vector3(0,0,0) * Time.deltaTime * speedOfHoriz);
+            mainChar.transform.Translate(new Vector3(horizDir,0,0) * Time.deltaTime * speedOfHoriz);
         }
         
     }
@@ -50,6 +52,20 @@ public class StickController : MonoBehaviour
         if (other.tag == "Player")
         {
             gm.GetComponent<GameManager>().jumperBlue = true;
+            
+            float eulerZ = transform.parent.transform.eulerAngles.z;
+            if (eulerZ >= 215f)
+            {
+                horizDir = -1f;
+            }else if (eulerZ <= 145f)
+            {
+                horizDir = 1f;
+            }
+            else
+            {
+                float rate = (2f) / (215f - 145f);
+                horizDir = ((215f - eulerZ) * rate) - 1;
+            }
         }
     }
 
