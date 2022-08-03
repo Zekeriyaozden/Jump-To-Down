@@ -10,30 +10,17 @@ namespace MoreMountains.NiceVibrations
 
 
 
-        protected WaitForSeconds _turnDelay;
-        protected WaitForSeconds _shakeDelay;
-        protected int _idleAnimationParameter;
+
 
         protected virtual void Awake()
         {
-            _turnDelay = new WaitForSeconds(0.02f);
-            _shakeDelay = new WaitForSeconds(0.3f);
-            _idleAnimationParameter = Animator.StringToHash("Idle");
+
 
         }
 
-        protected virtual void ChangeImage(Sprite newSprite)
-        {
-            StartCoroutine(ChangeImageCoroutine(newSprite));
-        }
 
-        protected virtual IEnumerator ChangeImageCoroutine(Sprite newSprite)
-        {
-            DebugAudioTransient.Play();
-            yield return _turnDelay;
-            yield return _shakeDelay;
-            yield return _turnDelay;
-        }
+
+
 
 
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
+using MoreMountains.NiceVibrations;
 public class GameManager : MonoBehaviour
 {
     public GameObject mainChar;
@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour
     public int currentColor;
     public bool isGameOver;
     // 0-purple  1-blue 2-yellow
+    public float speed;
+    public float speedOfHoriz;
+    public float high;
     public Material[] materials;
     public GameObject UIGameOver;
     public GameObject UISkor;
@@ -26,6 +29,37 @@ public class GameManager : MonoBehaviour
         isGameOver = false;
         flag = true;
         jumperBlue = false;
+    }
+
+    public void charFall()
+    {
+        mainChar.GetComponent<Animator>().SetBool("Fall",true);
+        mainChar.GetComponent<Animator>().SetBool("Jumping",false);
+        mainChar.GetComponent<Animator>().SetBool("Press",false);
+    }
+
+    public void charJump()
+    {
+        mainChar.GetComponent<Animator>().SetBool("Fall",false);
+        mainChar.GetComponent<Animator>().SetBool("Jumping",true);
+        mainChar.GetComponent<Animator>().SetBool("Press",true);
+    }
+
+    public void charPress()
+    {
+        mainChar.GetComponent<Animator>().SetBool("Fall",true);
+        mainChar.GetComponent<Animator>().SetBool("Jumping",false);
+        mainChar.GetComponent<Animator>().SetBool("Press",false);
+    }
+    
+    public void HapticJump()
+    {
+        MMVibrationManager.Haptic(HapticTypes.MediumImpact, false, true, this);
+    }
+
+    public void HapticFail()
+    {
+        MMVibrationManager.Haptic(HapticTypes.Failure, false, true, this);
     }
 
     private void gameOver()

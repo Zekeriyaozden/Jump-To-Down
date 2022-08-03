@@ -17,10 +17,10 @@
     <changedPaths>
       <option value="$PROJECT_DIR$/Assets/Scripts/ColorController.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/StickController.cs" />
       <option value="$PROJECT_DIR$/Assets/NiceVibrations/Common/Scripts/Editor/MMNVBuildPostProcessor.cs" />
       <option value="$PROJECT_DIR$/Assets/NiceVibrations/Demos/DemoAssets/RegularPresetsDemo/RegularPresetsDemoManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/StickController.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="2CnQ2HX0IMT2RPwv2MXa4F3867U" />
@@ -65,6 +65,7 @@
       <updated>1659435663163</updated>
       <workItem from="1659435676474" duration="9916000" />
       <workItem from="1659522770966" duration="2528000" />
+      <workItem from="1659534595361" duration="2638000" />
     </task>
     <servers />
   </component>

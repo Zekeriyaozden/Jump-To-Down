@@ -10,9 +10,9 @@ public class StickController : MonoBehaviour
     public GameObject gm;
     public float k;
     private bool flag;
-    public float speed;
-    public float speedOfHoriz;
-    public float high;
+    private float speed;
+    private float speedOfHoriz;
+    private float high;
     private float direction;
     private float progress;
     private float horizDir;
@@ -26,15 +26,19 @@ public class StickController : MonoBehaviour
         gm = GameObject.Find("GameManager");
         k = 0;
         horizDir = 0;
+        high = gm.GetComponent<GameManager>().high;
+        speed = gm.GetComponent<GameManager>().speed;
+        speedOfHoriz = gm.GetComponent<GameManager>().speedOfHoriz;
+        progress = high / speed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        progress = high / speed;
+
         if (gm.GetComponent<GameManager>().jumperPurple && isPurple)
         {
-            //215-145
+            
 
             direction = Mathf.Lerp(1, -1, k);
             if (k < 1)
@@ -42,6 +46,11 @@ public class StickController : MonoBehaviour
                 k += Time.deltaTime/progress;
             }
             
+
+            if (k > .5f)
+            {
+                gm.GetComponent<GameManager>().charFall();
+            }
             mainChar.transform.Translate(new Vector3(0,direction,0) * Time.deltaTime * speed);
             mainChar.transform.Translate(new Vector3(horizDir,0,0) * Time.deltaTime * speedOfHoriz);
         }
@@ -56,6 +65,10 @@ public class StickController : MonoBehaviour
             if (k < 1)
             {
                 k += Time.deltaTime/progress;
+            }
+            if (k > .5f)
+            {
+                gm.GetComponent<GameManager>().charFall();
             }
             
             mainChar.transform.Translate(new Vector3(0,direction,0) * Time.deltaTime * speed);
@@ -72,6 +85,10 @@ public class StickController : MonoBehaviour
             if (k < 1)
             {
                 k += Time.deltaTime/progress;
+            }
+            if (k > .5f)
+            {
+                gm.GetComponent<GameManager>().charFall();
             }
             
             mainChar.transform.Translate(new Vector3(0,direction,0) * Time.deltaTime * speed);
@@ -93,9 +110,12 @@ public class StickController : MonoBehaviour
             if (gm.GetComponent<GameManager>().currentColor != 0)
             {
                 Time.timeScale = 0f;
+                gm.GetComponent<GameManager>().HapticFail();
                 gm.GetComponent<GameManager>().isGameOver = true;
             }else
             {
+                gm.GetComponent<GameManager>().charJump();
+                gm.GetComponent<GameManager>().HapticJump();
                 gm.GetComponent<GameManager>().skor++;
             }
             
@@ -133,9 +153,12 @@ public class StickController : MonoBehaviour
             if (gm.GetComponent<GameManager>().currentColor != 1)
             {
                 Time.timeScale = 0f;
+                gm.GetComponent<GameManager>().HapticFail();
                 gm.GetComponent<GameManager>().isGameOver = true;
             }else
             {
+                gm.GetComponent<GameManager>().charJump();
+                gm.GetComponent<GameManager>().HapticJump();
                 gm.GetComponent<GameManager>().skor++;
             }
             
@@ -173,10 +196,13 @@ public class StickController : MonoBehaviour
             if (gm.GetComponent<GameManager>().currentColor != 2)
             {
                 Time.timeScale = 0f;
+                gm.GetComponent<GameManager>().HapticFail();
                 gm.GetComponent<GameManager>().isGameOver = true;
             }
             else
             {
+                gm.GetComponent<GameManager>().charJump();
+                gm.GetComponent<GameManager>().HapticJump();
                 gm.GetComponent<GameManager>().skor++;
             }
             int selectMaterial;

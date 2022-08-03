@@ -151,7 +151,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 107607763}
   m_LocalRotation: {x: -0, y: -0, z: 0.5, w: 0.8660254}
-  m_LocalPosition: {x: -0.00565, y: 0.00368, z: 0.0017202471}
+  m_LocalPosition: {x: -0.0052, y: 0.003, z: 0.0017202471}
   m_LocalScale: {x: 0.031020867, y: 0.0028200787, z: 0.0028200787}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -236,9 +236,6 @@ MonoBehaviour:
   mainChar: {fileID: 5379222117673979831}
   gm: {fileID: 0}
   k: 0
-  speed: 9
-  speedOfHoriz: 2.35
-  high: 30
   isYellow: 1
   isBlue: 0
   isPurple: 0
@@ -504,6 +501,9 @@ MonoBehaviour:
   jumperPurple: 0
   currentColor: 1
   isGameOver: 0
+  speed: 9
+  speedOfHoriz: 2.35
+  high: 30
   materials:
   - {fileID: -6922793697723135513, guid: 3e06adaf23f30be43ae91971109ce564, type: 3}
   - {fileID: -6629797300637803691, guid: 3e06adaf23f30be43ae91971109ce564, type: 3}
@@ -750,7 +750,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 826876972}
   m_LocalRotation: {x: -0, y: -0, z: 0.5, w: -0.8660254}
-  m_LocalPosition: {x: 0.00572476, y: 0.003694303, z: 0.0021996608}
+  m_LocalPosition: {x: 0.0049, y: 0.0032, z: 0.0021996608}
   m_LocalScale: {x: 0.031020867, y: 0.0028200787, z: 0.0028200787}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -835,9 +835,6 @@ MonoBehaviour:
   mainChar: {fileID: 5379222117673979831}
   gm: {fileID: 0}
   k: 0
-  speed: 9
-  speedOfHoriz: 2.35
-  high: 30
   isYellow: 0
   isBlue: 1
   isPurple: 0
@@ -1403,7 +1400,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1765094385}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.00033840947, y: -0.0068527907, z: 0.0022278621}
+  m_LocalPosition: {x: -0.0003, y: -0.0064, z: 0.0022278621}
   m_LocalScale: {x: 0.031020867, y: 0.0028200787, z: 0.0028200787}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1488,9 +1485,6 @@ MonoBehaviour:
   mainChar: {fileID: 5379222117673979831}
   gm: {fileID: 0}
   k: 0
-  speed: 9
-  speedOfHoriz: 2.35
-  high: 30
   isYellow: 0
   isBlue: 0
   isPurple: 1
@@ -2602,6 +2596,7 @@ GameObject:
   - component: {fileID: 4750460503142274317}
   - component: {fileID: 5379222117673979833}
   - component: {fileID: 5379222117673979832}
+  - component: {fileID: 5379222117673979834}
   m_Layer: 0
   m_Name: Character
   m_TagString: Player
@@ -2638,6 +2633,26 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 120
   m_CollisionDetection: 1
+--- !u!95 &5379222117673979834
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5379222117673979831}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f5c7a56d301175c41860d2e85961ef01, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5614823639056564354
 GameObject:
   m_ObjectHideFlags: 0
