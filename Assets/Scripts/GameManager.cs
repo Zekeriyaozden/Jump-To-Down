@@ -23,9 +23,12 @@ public class GameManager : MonoBehaviour
     public int skor;
     public GameObject UIBestScore;
     public GameObject particleObj;
+    public GameObject FailparticleObj;
     private bool hapticFailFlag;
+
     void Start()
     {
+
         hapticFailFlag = true;
         skor = 0;
         Time.timeScale = 1;
@@ -57,9 +60,18 @@ public class GameManager : MonoBehaviour
 
     public void hitParticle(int material)
     {
-        GameObject partic = Instantiate(particleObj);
-        partic.transform.position = mainChar.transform.position;
-        partic.GetComponent<ParticleSystemRenderer>().material = materials[material];
+        if (isGameOver)
+        {
+            GameObject partics = Instantiate(FailparticleObj);
+            partics.transform.position = mainChar.transform.position;
+            partics.GetComponent<ParticleSystemRenderer>().material = materials[material];
+        }
+        else
+        {
+            GameObject partic = Instantiate(particleObj);
+            partic.transform.position = mainChar.transform.position;
+            partic.GetComponent<ParticleSystemRenderer>().material = materials[material]; 
+        }
     }
     
     public void HapticJump()
@@ -81,7 +93,7 @@ public class GameManager : MonoBehaviour
                 HapticFail();
                 hapticFailFlag = false;
             }
-            Time.timeScale = 0;
+            //Time.timeScale = 0;
             UIGameOver.SetActive(true);
             isGameOver = true;
         }

@@ -109,9 +109,12 @@ public class StickController : MonoBehaviour
             
             if (gm.GetComponent<GameManager>().currentColor != 0)
             {
-                Time.timeScale = 0f;
-                gm.GetComponent<GameManager>().HapticFail();
                 gm.GetComponent<GameManager>().isGameOver = true;
+                gm.GetComponent<GameManager>().HapticFail();
+                gm.GetComponent<GameManager>().hitParticle(gm.GetComponent<GameManager>().currentColor);
+                mainChar.GetComponent<BoxCollider>().enabled = false;
+                mainChar.transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().enabled = false;
+                //gm.GetComponent<GameManager>().isGameOver = true;
             }else
             {
                 gm.GetComponent<GameManager>().hitParticle(0);
@@ -129,7 +132,10 @@ public class StickController : MonoBehaviour
 
             Material[] s = new Material[1];
             s[0] = gm.GetComponent<GameManager>().materials[selectMaterial];
-            mainChar.transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().materials = s;
+            if (!gm.GetComponent<GameManager>().isGameOver)
+            {
+                mainChar.transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().materials = s;   
+            }
             gm.GetComponent<GameManager>().currentColor = selectMaterial;
             
             
@@ -154,9 +160,12 @@ public class StickController : MonoBehaviour
             
             if (gm.GetComponent<GameManager>().currentColor != 1)
             {
-                Time.timeScale = 0f;
-                gm.GetComponent<GameManager>().HapticFail();
                 gm.GetComponent<GameManager>().isGameOver = true;
+                gm.GetComponent<GameManager>().HapticFail();
+                gm.GetComponent<GameManager>().hitParticle(gm.GetComponent<GameManager>().currentColor);
+                mainChar.GetComponent<BoxCollider>().enabled = false;
+                mainChar.transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().enabled = false;
+                //gm.GetComponent<GameManager>().isGameOver = true;
             }else
             {
                 gm.GetComponent<GameManager>().hitParticle(1);
@@ -174,7 +183,10 @@ public class StickController : MonoBehaviour
 
             Material[] s = new Material[1];
             s[0] = gm.GetComponent<GameManager>().materials[selectMaterial];
-            mainChar.transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().materials = s;
+            if (!gm.GetComponent<GameManager>().isGameOver)
+            {
+                mainChar.transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().materials = s;   
+            }
             gm.GetComponent<GameManager>().currentColor = selectMaterial;
             
             //25-95
@@ -199,9 +211,11 @@ public class StickController : MonoBehaviour
         {
             if (gm.GetComponent<GameManager>().currentColor != 2)
             {
-                Time.timeScale = 0f;
-                gm.GetComponent<GameManager>().HapticFail();
                 gm.GetComponent<GameManager>().isGameOver = true;
+                gm.GetComponent<GameManager>().HapticFail();
+                gm.GetComponent<GameManager>().hitParticle(gm.GetComponent<GameManager>().currentColor);
+                mainChar.GetComponent<BoxCollider>().enabled = false;
+                mainChar.transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().enabled = false;
             }
             else
             {
@@ -219,7 +233,10 @@ public class StickController : MonoBehaviour
 
             Material[] s = new Material[1];
             s[0] = gm.GetComponent<GameManager>().materials[selectMaterial];
-            mainChar.transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().materials = s;
+            if (!gm.GetComponent<GameManager>().isGameOver)
+            {
+                mainChar.transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().materials = s;   
+            }
             gm.GetComponent<GameManager>().currentColor = selectMaterial;
             
             //265-335
