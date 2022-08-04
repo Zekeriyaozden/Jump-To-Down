@@ -1,26 +1,32 @@
 fileFormatVersion: 2
-guid: c73d1a1c2a90f794b9f098901a9a9d77
+guid: 864d242b21d63de4a9ebc5be9f4debf5
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable:
   - first:
-      74: 1333261640709930722
-    second: JumpingAction
+      74: -3169722385041901187
+    second: Jumping.001Action.001
   - first:
-      74: -7071162662643679531
-    second: Jumping|Armature|mixamo.com|Layer0
+      74: -4215034482230979817
+    second: Jumping.001|Armature|mixamo.com|Layer0
   - first:
-      74: -7977909811254717084
-    second: Jumping|Armature|mixamo.com|Layer0.002
+      74: 5284997973129431777
+    second: Jumping.001|FallingAction
   - first:
-      74: -5085372073535974674
-    second: Jumping|FallingAction
+      74: 2955182235162939581
+    second: Jumping.001|Jumping.001Action
   - first:
-      74: 6719772235367573646
-    second: Jumping|JumpingAction
+      74: 4760920560133961589
+    second: Jumping.001|Jumping.001Action.001
   - first:
-      74: 2295477463226885536
-    second: Jumping|PressingAction
+      74: 983279272940492749
+    second: Jumping.001|JumpingAction
+  - first:
+      74: -8958013506231870942
+    second: Jumping.001|JumpingAction.001
+  - first:
+      74: -8780306397184285069
+    second: Jumping.001|PressingAction
   externalObjects: {}
   materials:
     materialImportMode: 2
