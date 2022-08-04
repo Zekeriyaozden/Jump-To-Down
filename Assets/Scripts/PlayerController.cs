@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
 
         if (isSwipping)
         {
-            transform.eulerAngles = new Vector3(0, 0, firstRotationTriangle.z + (mouseDrag * sens));
+            transform.eulerAngles = new Vector3(firstRotationTriangle.x + (mouseDrag * sens), 90f, 90f);
         }
         
     }
