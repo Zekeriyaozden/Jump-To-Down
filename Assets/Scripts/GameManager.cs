@@ -25,16 +25,32 @@ public class GameManager : MonoBehaviour
     public GameObject particleObj;
     public GameObject FailparticleObj;
     private bool hapticFailFlag;
+    private bool cloudFlag;
+    public GameObject clouds;
+    public float cloudSpeed;
+    public float cloudDuration;
 
     void Start()
     {
-
+        cloudFlag = false;
         hapticFailFlag = true;
         skor = 0;
         Time.timeScale = 1;
         isGameOver = false;
         flag = true;
         jumperBlue = false;
+    }
+
+    private IEnumerator cloudCor()
+    {
+        cloudFlag = true;
+        yield return new WaitForSeconds(cloudDuration);
+        cloudFlag = false;
+    }
+
+    public void cloudProgress()
+    {
+        StartCoroutine(cloudCor());
     }
 
     public void charFall()
@@ -107,7 +123,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //PlayerPrefs.SetInt("BestScore",0);
+        if (cloudFlag)
+        {
+            clouds.transform.Translate(new Vector3(0,-1,0) * Time.deltaTime * cloudSpeed);
+        }
         if (skor > PlayerPrefs.GetInt("BestScore",0))
         {
             PlayerPrefs.SetInt("BestScore",skor);

@@ -122,6 +122,7 @@ public class StickController : MonoBehaviour
                 gm.GetComponent<GameManager>().charJump();
                 gm.GetComponent<GameManager>().HapticJump();
                 gm.GetComponent<GameManager>().skor++;
+                gm.GetComponent<GameManager>().cloudProgress();
             }
             
             int selectMaterial;
@@ -173,6 +174,7 @@ public class StickController : MonoBehaviour
                 gm.GetComponent<GameManager>().charJump();
                 gm.GetComponent<GameManager>().HapticJump();
                 gm.GetComponent<GameManager>().skor++;
+                gm.GetComponent<GameManager>().cloudProgress();
             }
             
             int selectMaterial;
@@ -224,6 +226,7 @@ public class StickController : MonoBehaviour
                 gm.GetComponent<GameManager>().charJump();
                 gm.GetComponent<GameManager>().HapticJump();
                 gm.GetComponent<GameManager>().skor++;
+                gm.GetComponent<GameManager>().cloudProgress();
             }
             int selectMaterial;
             do
