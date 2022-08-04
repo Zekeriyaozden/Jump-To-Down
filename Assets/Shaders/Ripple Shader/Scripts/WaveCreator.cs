@@ -14,11 +14,15 @@ public class WaveCreator : MonoBehaviour
     
     void Start()
     {
-        
+        foreach (var material in _materials)
+        {
+            material.SetFloat("_Ring", 1f);
+        }
     }
 
     void Update()
     {
+        
         if (_waveActive)
         {
             _currentRing = Mathf.MoveTowards(_currentRing, _endRing, _speed * Time.deltaTime);
@@ -44,6 +48,11 @@ public class WaveCreator : MonoBehaviour
         foreach (var material in _materials)
         {
             material.SetFloat("_Ring", ring);
+            if (material.GetFloat("_Ring") < -9f || material.GetFloat("_Ring") == 0)
+            {
+                Debug.Log("Entered");
+                material.SetFloat("_Ring", 1f);
+            }
         }
     }
 
@@ -61,7 +70,7 @@ public class WaveCreator : MonoBehaviour
         if (collision.collider.CompareTag ("Hit"))
         {
             WaveStart(transform.position);
-            Debug.Log("çarpýþma yaþandý" + collision.collider.tag);
+            Debug.Log("ï¿½arpï¿½ï¿½ma yaï¿½andï¿½" + collision.collider.tag);
         }
     }
 }

@@ -5,9 +5,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float sens;
-    private Vector3 firstPosMouse;
-    private float mouseDrag;
-    private Vector3 firstRotationTriangle;
+    public Vector3 firstPosMouse;
+    public float mouseDrag;
+    public Vector3 firstRotationTriangle;
     private bool isSwipping;
     private GameObject gm;
     public bool isGamePlay;
@@ -45,7 +45,9 @@ public class PlayerController : MonoBehaviour
 
         if (isSwipping)
         {
-            transform.eulerAngles = new Vector3(firstRotationTriangle.x + (mouseDrag * sens), 90f, 90f);
+            float s = firstRotationTriangle.z + (mouseDrag * sens);
+            //Debug.Log(mouseDrag);
+            transform.eulerAngles = new Vector3(0, 0,s);
         }
         
     }
@@ -53,6 +55,8 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
+        Debug.Log(transform.localEulerAngles);
+        Debug.Log(transform.eulerAngles);
         if (gm.GetComponent<GameManager>().isGameOver)
         {
             isGamePlay = false;

@@ -114,6 +114,8 @@ public class StickController : MonoBehaviour
                 gm.GetComponent<GameManager>().isGameOver = true;
             }else
             {
+                gm.GetComponent<GameManager>().hitParticle(0);
+                gm.GetComponent<GameManager>().speed += gm.GetComponent<GameManager>().speed * (10f / 100f);
                 gm.GetComponent<GameManager>().charJump();
                 gm.GetComponent<GameManager>().HapticJump();
                 gm.GetComponent<GameManager>().skor++;
@@ -157,6 +159,8 @@ public class StickController : MonoBehaviour
                 gm.GetComponent<GameManager>().isGameOver = true;
             }else
             {
+                gm.GetComponent<GameManager>().hitParticle(1);
+                gm.GetComponent<GameManager>().speed += gm.GetComponent<GameManager>().speed * (10f / 100f);
                 gm.GetComponent<GameManager>().charJump();
                 gm.GetComponent<GameManager>().HapticJump();
                 gm.GetComponent<GameManager>().skor++;
@@ -201,6 +205,8 @@ public class StickController : MonoBehaviour
             }
             else
             {
+                gm.GetComponent<GameManager>().hitParticle(2);
+                gm.GetComponent<GameManager>().speed += gm.GetComponent<GameManager>().speed * (10f / 100f);
                 gm.GetComponent<GameManager>().charJump();
                 gm.GetComponent<GameManager>().HapticJump();
                 gm.GetComponent<GameManager>().skor++;
