@@ -55,13 +55,13 @@ Material:
     - _Normal_Strength: 10
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Ring: -2.1230688
+    - _Ring: 1
     - _Smoothness: 0.96
-    - _Wave_Scale: 0.13
-    - _thickness: -0.32
+    - _Wave_Scale: 0.15
+    - _thickness: -0.47
     m_Colors:
     - _Base_Color: {r: 0.135849, g: 0.5042502, b: 1, a: 0}
     - _Fresnel_Color: {r: 0, g: 0.07058859, b: 1, a: 0}
-    - _WaveStartPos: {r: -0.604361, g: 2.4537551, b: -17.89999, a: 0}
+    - _WaveStartPos: {r: 2.3995337, g: 3.775145, b: -17.900013, a: 0}
     - _Wave_Start_position: {r: 0, g: 1.43, b: -0.22, a: 0}
   m_BuildTextureStacks: []
