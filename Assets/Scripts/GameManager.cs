@@ -6,11 +6,13 @@ using UnityEngine.UI;
 using MoreMountains.NiceVibrations;
 public class GameManager : MonoBehaviour
 {
+    public bool isSoundOn;
+    public bool isHapticOn;
     public GameObject mainChar;
     public bool jumperBlue;
     public bool jumperYellow;
     public bool jumperPurple;
-    private bool flag;
+    public bool flag;
     public int currentColor;
     public bool isGameOver;
     // 0-purple  1-blue 2-yellow
@@ -29,16 +31,22 @@ public class GameManager : MonoBehaviour
     public GameObject clouds;
     public float cloudSpeed;
     public float cloudDuration;
+    public AudioSource audioSrc;
+    public GameObject CanvasSkor;
 
     void Start()
     {
+        audioSrc = GetComponent<AudioSource>();
+        Application.targetFrameRate = 240;
         cloudFlag = false;
         hapticFailFlag = true;
         skor = 0;
         Time.timeScale = 1;
         isGameOver = false;
-        flag = true;
+        flag = false;
         jumperBlue = false;
+        isHapticOn = true;
+        isSoundOn = true;
     }
 
     private IEnumerator cloudCor()
@@ -92,24 +100,49 @@ public class GameManager : MonoBehaviour
     
     public void HapticJump()
     {
-        MMVibrationManager.Haptic(HapticTypes.MediumImpact, false, true, this);
+        if (isHapticOn)
+        {
+            MMVibrationManager.Haptic(HapticTypes.MediumImpact, false, true, this);   
+        }
+
+        if (isSoundOn)
+        {
+            audioSrc.Play();
+        }
     }
 
     public void HapticFail()
     {
-        MMVibrationManager.Haptic(HapticTypes.Failure, false, true, this);
+        CanvasSkor.SetActive(false);
+        UIGameOver.SetActive(true);
+        isGameOver = true;
+        if (isHapticOn)
+        {
+            MMVibrationManager.Haptic(HapticTypes.Failure, false, true, this);
+        }
+
+        if (isSoundOn)
+        {
+            
+        }
     }
 
     private void gameOver()
     {
         if (mainChar.transform.position.x < -10f || mainChar.transform.position.x > 8 || mainChar.transform.position.y < -12)
         {
+            isGameOver = true;
+            hitParticle(currentColor);
             if (hapticFailFlag)
             {
                 HapticFail();
                 hapticFailFlag = false;
             }
-            //Time.timeScale = 0;
+            else
+            {
+                CanvasSkor.SetActive(false);
+            }
+
             UIGameOver.SetActive(true);
             isGameOver = true;
         }
@@ -123,6 +156,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isGameOver && Input.GetMouseButtonDown(0))
+        {
+                tryAgain();
+        }
+        
         if (cloudFlag)
         {
             clouds.transform.Translate(new Vector3(0,-1,0) * Time.deltaTime * cloudSpeed);

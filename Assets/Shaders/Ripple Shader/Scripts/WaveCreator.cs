@@ -70,7 +70,6 @@ public class WaveCreator : MonoBehaviour
         if (collision.collider.CompareTag ("Hit"))
         {
             WaveStart(transform.position);
-            Debug.Log("�arp��ma ya�and�" + collision.collider.tag);
         }
     }
 }
