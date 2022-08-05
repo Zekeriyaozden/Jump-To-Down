@@ -28,14 +28,17 @@ public class StickController : MonoBehaviour
         horizDir = 0;
         high = gm.GetComponent<GameManager>().high;
         speed = gm.GetComponent<GameManager>().speed;
-        speedOfHoriz = gm.GetComponent<GameManager>().speedOfHoriz;
         progress = high / speed;
+        speedOfHoriz = gm.GetComponent<GameManager>().speedOfHoriz;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+    
+        high = gm.GetComponent<GameManager>().high;
+        speed = gm.GetComponent<GameManager>().speed;
+        progress = high / speed;
         if (gm.GetComponent<GameManager>().jumperPurple && isPurple)
         {
             
@@ -99,6 +102,7 @@ public class StickController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(transform.eulerAngles.z);
         k = 0;
         horizDir = 0f;
         gm.GetComponent<GameManager>().jumperYellow = false;
@@ -118,7 +122,7 @@ public class StickController : MonoBehaviour
             }else
             {
                 gm.GetComponent<GameManager>().hitParticle(0);
-                gm.GetComponent<GameManager>().speed += gm.GetComponent<GameManager>().speed * (10f / 100f);
+                gm.GetComponent<GameManager>().speed += gm.GetComponent<GameManager>().speed * (2f / 100f);
                 gm.GetComponent<GameManager>().charJump();
                 gm.GetComponent<GameManager>().HapticJump();
                 gm.GetComponent<GameManager>().skor++;
@@ -141,18 +145,22 @@ public class StickController : MonoBehaviour
             
             
             gm.GetComponent<GameManager>().jumperPurple = true;
-            float eulerZ = transform.parent.transform.eulerAngles.z;
-            if (eulerZ >= 215f)
+            float eulerZ = transform.eulerAngles.z;
+            if (eulerZ > 200)
+            {
+                eulerZ = eulerZ - 360f;
+            }
+            if (eulerZ >= 50f)
             {
                 horizDir = -1f;
-            }else if (eulerZ <= 145f)
+            }else if (eulerZ <= -50f)
             {
                 horizDir = 1f;
             }
             else
             {
-                float rate = (2f) / (215f - 145f);
-                horizDir = ((215f - eulerZ) * rate) - 1;
+                float rate = (2f) / (50f - -50f);
+                horizDir = ((50f - eulerZ) * rate) - 1;
             }
         }
         //---------------------------------------------------------
@@ -170,7 +178,7 @@ public class StickController : MonoBehaviour
             }else
             {
                 gm.GetComponent<GameManager>().hitParticle(1);
-                gm.GetComponent<GameManager>().speed += gm.GetComponent<GameManager>().speed * (10f / 100f);
+                gm.GetComponent<GameManager>().speed += gm.GetComponent<GameManager>().speed * (2f / 100f);
                 gm.GetComponent<GameManager>().charJump();
                 gm.GetComponent<GameManager>().HapticJump();
                 gm.GetComponent<GameManager>().skor++;
@@ -194,18 +202,22 @@ public class StickController : MonoBehaviour
             //25-95
             gm.GetComponent<GameManager>().jumperBlue = true;
             
-            float eulerZ = transform.parent.transform.eulerAngles.z;
-            if (eulerZ >= 95f)
+            float eulerZ = transform.eulerAngles.z;
+            if (eulerZ > 200)
+            {
+                eulerZ = eulerZ - 360f;
+            }
+            if (eulerZ >= 50f)
             {
                 horizDir = -1f;
-            }else if (eulerZ <= 25f)
+            }else if (eulerZ <= -50f)
             {
                 horizDir = 1f;
             }
             else
             {
-                float rate = (2f) / (95f - 25f);
-                horizDir = ((95f - eulerZ) * rate) - 1;
+                float rate = (2f) / (50f - -50f);
+                horizDir = ((50f - eulerZ) * rate) - 1;
             }
         }
         //---------------------------------------------------------
@@ -222,7 +234,7 @@ public class StickController : MonoBehaviour
             else
             {
                 gm.GetComponent<GameManager>().hitParticle(2);
-                gm.GetComponent<GameManager>().speed += gm.GetComponent<GameManager>().speed * (10f / 100f);
+                gm.GetComponent<GameManager>().speed += gm.GetComponent<GameManager>().speed * (2f / 100f);
                 gm.GetComponent<GameManager>().charJump();
                 gm.GetComponent<GameManager>().HapticJump();
                 gm.GetComponent<GameManager>().skor++;
@@ -245,18 +257,22 @@ public class StickController : MonoBehaviour
             //265-335
             gm.GetComponent<GameManager>().jumperYellow = true;
             
-            float eulerZ = transform.parent.transform.eulerAngles.z;
-            if (eulerZ >= 335f)
+            float eulerZ = transform.eulerAngles.z;
+            if (eulerZ > 200)
+            {
+                eulerZ = eulerZ - 360f;
+            }
+            if (eulerZ >= 50f)
             {
                 horizDir = -1f;
-            }else if (eulerZ <= 265f)
+            }else if (eulerZ <= -50f)
             {
                 horizDir = 1f;
             }
             else
             {
-                float rate = (2f) / (335f - 265f);
-                horizDir = ((335f - eulerZ) * rate) - 1;
+                float rate = (2f) / (50f - -50f);
+                horizDir = ((50f - eulerZ) * rate) - 1;
             }
         }
         

@@ -18,10 +18,10 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/ColorController.cs" />
       <option value="$PROJECT_DIR$/Assets/NiceVibrations/Common/Scripts/Editor/MMNVBuildPostProcessor.cs" />
       <option value="$PROJECT_DIR$/Assets/NiceVibrations/Demos/DemoAssets/RegularPresetsDemo/RegularPresetsDemoManager.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" />
       <option value="$PROJECT_DIR$/Assets/Shaders/Ripple Shader/Scripts/WaveCreator.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/StickController.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/StickController.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="2CnQ2HX0IMT2RPwv2MXa4F3867U" />

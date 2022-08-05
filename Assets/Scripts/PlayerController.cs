@@ -54,9 +54,6 @@ public class PlayerController : MonoBehaviour
     
     void Update()
     {
-
-        Debug.Log(transform.localEulerAngles);
-        Debug.Log(transform.eulerAngles);
         if (gm.GetComponent<GameManager>().isGameOver)
         {
             isGamePlay = false;

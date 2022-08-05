@@ -102,7 +102,7 @@ public class GameManager : MonoBehaviour
 
     private void gameOver()
     {
-        if (mainChar.transform.position.x < -5.9f || mainChar.transform.position.x > 5.9 || mainChar.transform.position.y < -12)
+        if (mainChar.transform.position.x < -10f || mainChar.transform.position.x > 8 || mainChar.transform.position.y < -12)
         {
             if (hapticFailFlag)
             {

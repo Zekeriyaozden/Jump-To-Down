@@ -31,10 +31,10 @@ Material:
     m_Ints: []
     m_Floats:
     - _NoiseForce: 37.14
-    - _RadiusMultiplier: 1.98
+    - _RadiusMultiplier: 1.02
     m_Colors:
-    - _ColorFrom: {r: 0.5660378, g: 0.5660378, b: 0.5660378, a: 1}
-    - _ColorTo: {r: 1, g: 1, b: 1, a: 1}
-    - _GradientPivot: {r: 0.45, g: 2.67, b: 0, a: 0}
+    - _ColorFrom: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _ColorTo: {r: 0.7216981, g: 0.8439326, b: 1, a: 1}
+    - _GradientPivot: {r: 0.45, g: -0.25, b: 0, a: 0}
     - _NoiseScale: {r: 10, g: 10, b: 0, a: 0}
   m_BuildTextureStacks: []
