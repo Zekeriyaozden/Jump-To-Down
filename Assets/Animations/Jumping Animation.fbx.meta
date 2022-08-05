@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 864d242b21d63de4a9ebc5be9f4debf5
+guid: 5d20dbf70fc4e664eac4670633b60f19
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable:
@@ -13,17 +13,11 @@ ModelImporter:
       74: 5284997973129431777
     second: Jumping.001|FallingAction
   - first:
-      74: 2955182235162939581
-    second: Jumping.001|Jumping.001Action
-  - first:
       74: 4760920560133961589
     second: Jumping.001|Jumping.001Action.001
   - first:
       74: 983279272940492749
     second: Jumping.001|JumpingAction
-  - first:
-      74: -8958013506231870942
-    second: Jumping.001|JumpingAction.001
   - first:
       74: -8780306397184285069
     second: Jumping.001|PressingAction

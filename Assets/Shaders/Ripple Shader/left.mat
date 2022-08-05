@@ -48,20 +48,20 @@ Material:
     m_Ints: []
     m_Floats:
     - _Alpha_Node: 1
-    - _Fade: 0.1
+    - _Fade: 0.09
     - _Float: -1.25
     - _Fresnel_Power: 1.4
     - _Metallic: 0
     - _Normal_Strength: 10
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Ring: -7.9042645
-    - _Smoothness: 0.48
-    - _Wave_Scale: 0.27
+    - _Ring: -2.1230688
+    - _Smoothness: 0.601
+    - _Wave_Scale: 0.13
     - _thickness: -0.32
     m_Colors:
-    - _Base_Color: {r: 0.9450981, g: 0.37254903, b: 0.5176471, a: 0}
+    - _Base_Color: {r: 1, g: 0.3339622, b: 0.5788291, a: 0}
     - _Fresnel_Color: {r: 0, g: 0.07058859, b: 1, a: 0}
-    - _WaveStartPos: {r: -0.61119205, g: 2.916173, b: -17.90001, a: 0}
+    - _WaveStartPos: {r: -0.604361, g: 2.4537551, b: -17.89999, a: 0}
     - _Wave_Start_position: {r: 0, g: 1.43, b: -0.22, a: 0}
   m_BuildTextureStacks: []
