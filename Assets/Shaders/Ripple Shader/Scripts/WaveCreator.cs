@@ -64,10 +64,10 @@ public class WaveCreator : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
        
-        if (collision.collider.CompareTag ("Hit"))
+        if (collision.gameObject.tag == "Hit")
         {
             WaveStart(transform.position);
         }
