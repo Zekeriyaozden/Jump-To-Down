@@ -33,9 +33,11 @@ public class GameManager : MonoBehaviour
     public float cloudDuration;
     public AudioSource audioSrc;
     public GameObject CanvasSkor;
+    private bool particleFlag;
 
     void Start()
     {
+        particleFlag = true;
         audioSrc = GetComponent<AudioSource>();
         Application.targetFrameRate = 240;
         cloudFlag = false;
@@ -89,14 +91,54 @@ public class GameManager : MonoBehaviour
             GameObject partics = Instantiate(FailparticleObj);
             partics.transform.position = mainChar.transform.position;
             partics.GetComponent<ParticleSystemRenderer>().material = materials[material];
+            StartCoroutine(particleDestroyer(partics));
         }
         else
         {
             GameObject partic = Instantiate(particleObj);
             partic.transform.position = mainChar.transform.position;
             partic.GetComponent<ParticleSystemRenderer>().material = materials[material]; 
+            StartCoroutine(particleDestroyer(partic));
         }
     }
+    
+    //------------------------------------------------------------------------------------
+
+    private IEnumerator particleDestroyer(GameObject go)
+    {
+        yield return new WaitForSeconds(2f);
+        Destroy(go.gameObject);
+    }
+
+    //------------------------------------------------------------------------------------
+    private IEnumerator gmParticle(int material)
+    {
+        GameObject partics = Instantiate(FailparticleObj);
+        partics.transform.position = mainChar.transform.position;
+        partics.GetComponent<ParticleSystemRenderer>().material = materials[material];
+        StartCoroutine(particleDestroyer(partics));
+        for (int i = 0; i < 30; i++)
+        {
+            yield return new WaitForSeconds(0.1f);
+            GameObject partic = Instantiate(FailparticleObj);
+            partic.transform.position = mainChar.transform.position;
+            partic.GetComponent<ParticleSystemRenderer>().material = materials[material];
+            StartCoroutine(particleDestroyer(partic));
+        }
+    }
+    
+    public void hitParticleGM(int material)
+    {
+        if (particleFlag)
+        {
+            particleFlag = false;
+            mainChar.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().enabled = false;
+            StartCoroutine(gmParticle(material));
+        }
+
+    }
+    
+    //------------------------------------------------------------------------------------
     
     public void HapticJump()
     {
@@ -132,7 +174,7 @@ public class GameManager : MonoBehaviour
         if (mainChar.transform.position.x < -10f || mainChar.transform.position.x > 8 || mainChar.transform.position.y < -12)
         {
             isGameOver = true;
-            hitParticle(currentColor);
+            hitParticleGM(currentColor);
             if (hapticFailFlag)
             {
                 HapticFail();

@@ -24,9 +24,9 @@
       <option value="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/StickController.cs" />
       <option value="$PROJECT_DIR$/Assets/Editor/ResetPlayerPrefs.cs" />
-      <option value="$PROJECT_DIR$/Assets/Shaders/Ripple Shader/Scripts/WaveCreator.cs" />
       <option value="$PROJECT_DIR$/Assets/Editor/MyWindow.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/GamePlayController.cs" />
+      <option value="$PROJECT_DIR$/Assets/Shaders/Ripple Shader/Scripts/WaveCreator.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
     </changedPaths>
   </component>
@@ -73,6 +73,7 @@
       <workItem from="1659435676474" duration="9916000" />
       <workItem from="1659522770966" duration="2528000" />
       <workItem from="1659534595361" duration="2638000" />
+      <workItem from="1659789863203" duration="643000" />
     </task>
     <servers />
   </component>
