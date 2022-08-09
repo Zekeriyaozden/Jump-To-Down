@@ -55,6 +55,6 @@ Material:
     - _Smoothness: 0.526
     - _Thickness: 0
     m_Colors:
-    - _Color: {r: 1, g: 0.98823535, b: 0, a: 0}
+    - _Color: {r: 1, g: 0.6784314, b: 0, a: 0}
     - _Edge_Color: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

@@ -6,6 +6,9 @@ using UnityEngine.UI;
 using MoreMountains.NiceVibrations;
 public class GameManager : MonoBehaviour
 {
+    public List<int> materialList;
+    public List<Material> shaderMaterialList;
+    public GameObject charts;
     public bool isSoundOn;
     public bool isHapticOn;
     public GameObject mainChar;
@@ -37,11 +40,21 @@ public class GameManager : MonoBehaviour
     public float horizDir;
     public int screenWidth;
     public GameObject[] gObjSticks;
+    // public float screenDevideTo828;
+    private int countFillObject;
+    public GameObject fillObject;
 
     void Start()
     {
-        //deneme = Camera.main.WorldToScreenPoint(mainChar.transform.position);
+        //fillObject.transform.GetChild(10).gameObject.transform.position = new Vector3(0, 0, 0);
+        countFillObject = 0;
         screenWidth = Screen.width;
+        /*screenDevideTo828 = (float) screenWidth / 828f;
+        mainChar.transform.localScale *= screenDevideTo828;
+        speed *= screenDevideTo828;
+        speedOfHoriz *= screenDevideTo828;
+        charts.transform.localScale *= screenDevideTo828;
+        high *= screenDevideTo828;*/
         horizDir = 0;
         particleFlag = true;
         audioSrc = GetComponent<AudioSource>();
@@ -56,7 +69,74 @@ public class GameManager : MonoBehaviour
         isHapticOn = true;
         isSoundOn = true;
     }
+    //-------------------------------------------------------------------------------------
+/*
+ *
+ *             int selectMaterial;
+            do
+            {
+                selectMaterial = Random.Range(0,3);
+            } while (selectMaterial == 0);
 
+            Material[] s = new Material[1];
+            s[0] = gm.GetComponent<GameManager>().materials[selectMaterial];
+            if (!gm.GetComponent<GameManager>().isGameOver)
+            {
+                mainChar.transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().materials = s;   
+            }
+            gm.GetComponent<GameManager>().currentColor = selectMaterial;
+ */
+    public bool ChangeTheColor()
+    {
+        if (materialList.Count > 2)
+        {
+            Material[] s = new Material[1];
+            s[0] = materials[materialList[1]];
+            if (!isGameOver)
+            {
+                mainChar.transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().materials = s;   
+            }
+            currentColor = materialList[1];
+            materialList.RemoveAt(0);
+            return true;
+        }
+        else
+        {
+            hitParticle(1);
+            mainChar.transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().enabled = false;
+            charts.SetActive(false);
+            return false;
+        }
+    }
+    
+    //-------------------------------------------------------------------------------------
+
+    private IEnumerator shaderCor(Material mt)
+    {
+        float k = 0;
+        for (int i = 0; i < 100; i++)
+        {
+            yield return new WaitForSeconds(.6f/100f);
+            k += 1f / 100f;
+            float s = Mathf.Lerp(-1f, .15f, k);
+            mt.SetFloat("_Ring",s);
+        }
+    }
+    
+    public void fillTheObject()
+    {
+        Debug.Log(countFillObject);
+        if (1 < materialList.Count)
+        {
+            Material[] ms = new Material[1];
+            ms[0] = shaderMaterialList[countFillObject];
+            fillObject.transform.GetChild(countFillObject).gameObject.GetComponent<MeshRenderer>().materials = ms;
+            StartCoroutine(shaderCor(shaderMaterialList[countFillObject]));
+            countFillObject++;
+        }
+    }
+
+    //-------------------------------------------------------------------------------------
     private IEnumerator cloudCor()
     {
         cloudFlag = true;
@@ -207,7 +287,7 @@ public class GameManager : MonoBehaviour
         //deneme = Camera.main.WorldToScreenPoint(mainChar.transform.position);
         float s = Camera.main.WorldToScreenPoint(mainChar.transform.position).x;
 
-        if (s < 5)
+        if (s < 11)
         {
             foreach (var stick in gObjSticks)
             {
@@ -218,7 +298,7 @@ public class GameManager : MonoBehaviour
                 }
             }   
         }
-        if (s > screenWidth - 5)
+        if (s > screenWidth - 11)
         {
             foreach (var stick in gObjSticks)
             {

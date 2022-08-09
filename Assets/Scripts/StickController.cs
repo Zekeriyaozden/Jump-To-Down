@@ -38,7 +38,6 @@ public class StickController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    
         high = gm.GetComponent<GameManager>().high;
         speed = gm.GetComponent<GameManager>().speed;
         progress = high / speed;
@@ -61,8 +60,8 @@ public class StickController : MonoBehaviour
             float ang = Mathf.Lerp(charAngle, 0, k);
             mainChar.transform.eulerAngles = new Vector3(0,0,ang);
             
-            mainChar.transform.Translate(new Vector3(0,direction,0) * Time.deltaTime * speed);
-            mainChar.transform.Translate(new Vector3(horizDir,0,0) * Time.deltaTime * speedOfHoriz);
+            mainChar.transform.Translate(new Vector3(0,direction,0) * Time.deltaTime * speed , Space.World);
+            mainChar.transform.Translate(new Vector3(horizDir,0,0) * Time.deltaTime * speedOfHoriz , Space.World);
         }
         
         //------------------------------------
@@ -84,8 +83,8 @@ public class StickController : MonoBehaviour
             float ang = Mathf.Lerp(charAngle, 0, k);
             mainChar.transform.eulerAngles = new Vector3(0,0,ang);
             
-            mainChar.transform.Translate(new Vector3(0,direction,0) * Time.deltaTime * speed);
-            mainChar.transform.Translate(new Vector3(horizDir,0,0) * Time.deltaTime * speedOfHoriz);
+            mainChar.transform.Translate(new Vector3(0,direction,0) * Time.deltaTime * speed , Space.World);
+            mainChar.transform.Translate(new Vector3(horizDir,0,0) * Time.deltaTime * speedOfHoriz , Space.World);
         }
         
         //---------------------------------------------
@@ -108,8 +107,8 @@ public class StickController : MonoBehaviour
             mainChar.transform.eulerAngles = new Vector3(0,0,ang);
             
             
-            mainChar.transform.Translate(new Vector3(0,direction,0) * Time.deltaTime * speed);
-            mainChar.transform.Translate(new Vector3(horizDir,0,0) * Time.deltaTime * speedOfHoriz);
+            mainChar.transform.Translate(new Vector3(0,direction,0) * Time.deltaTime * speed , Space.World);
+            mainChar.transform.Translate(new Vector3(horizDir,0,0) * Time.deltaTime * speedOfHoriz , Space.World);
         }
         
     }
@@ -124,6 +123,7 @@ public class StickController : MonoBehaviour
         gm.GetComponent<GameManager>().jumperPurple = false;
         if (other.tag == "Player" && gameObject.tag == "purple")
         {
+
             
             if (gm.GetComponent<GameManager>().currentColor != 0)
             {
@@ -140,22 +140,11 @@ public class StickController : MonoBehaviour
                 gm.GetComponent<GameManager>().charJump();
                 gm.GetComponent<GameManager>().HapticJump();
                 gm.GetComponent<GameManager>().skor++;
+                gm.GetComponent<GameManager>().fillTheObject();
                 gm.GetComponent<GameManager>().cloudProgress();
             }
-            
-            int selectMaterial;
-            do
-            {
-                selectMaterial = Random.Range(0,3);
-            } while (selectMaterial == 0);
 
-            Material[] s = new Material[1];
-            s[0] = gm.GetComponent<GameManager>().materials[selectMaterial];
-            if (!gm.GetComponent<GameManager>().isGameOver)
-            {
-                mainChar.transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().materials = s;   
-            }
-            gm.GetComponent<GameManager>().currentColor = selectMaterial;
+            gm.GetComponent<GameManager>().ChangeTheColor();
             
             
             gm.GetComponent<GameManager>().jumperPurple = true;
@@ -178,9 +167,9 @@ public class StickController : MonoBehaviour
             }
         }
         //---------------------------------------------------------
-        if (other.tag == "Player" && gameObject.tag == "blue")
+        if (other.tag == "Player" && gameObject.tag == "blue" )
         {
-            
+
             if (gm.GetComponent<GameManager>().currentColor != 1)
             {
                 gm.GetComponent<GameManager>().isGameOver = true;
@@ -196,22 +185,11 @@ public class StickController : MonoBehaviour
                 gm.GetComponent<GameManager>().charJump();
                 gm.GetComponent<GameManager>().HapticJump();
                 gm.GetComponent<GameManager>().skor++;
+                gm.GetComponent<GameManager>().fillTheObject();
                 gm.GetComponent<GameManager>().cloudProgress();
             }
             
-            int selectMaterial;
-            do
-            {
-                selectMaterial = Random.Range(0,3);
-            } while (selectMaterial == 1);
-
-            Material[] s = new Material[1];
-            s[0] = gm.GetComponent<GameManager>().materials[selectMaterial];
-            if (!gm.GetComponent<GameManager>().isGameOver)
-            {
-                mainChar.transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().materials = s;   
-            }
-            gm.GetComponent<GameManager>().currentColor = selectMaterial;
+            gm.GetComponent<GameManager>().ChangeTheColor();
             
             //25-95
             gm.GetComponent<GameManager>().jumperBlue = true;
@@ -236,8 +214,9 @@ public class StickController : MonoBehaviour
 
         }
         //---------------------------------------------------------
-        if (other.tag == "Player" && gameObject.tag == "yellow")
+        if (other.tag == "Player" && gameObject.tag == "yellow" )
         {
+
             if (gm.GetComponent<GameManager>().currentColor != 2)
             {
                 gm.GetComponent<GameManager>().isGameOver = true;
@@ -253,21 +232,11 @@ public class StickController : MonoBehaviour
                 gm.GetComponent<GameManager>().charJump();
                 gm.GetComponent<GameManager>().HapticJump();
                 gm.GetComponent<GameManager>().skor++;
+                gm.GetComponent<GameManager>().fillTheObject();
                 gm.GetComponent<GameManager>().cloudProgress();
             }
-            int selectMaterial;
-            do
-            {
-                selectMaterial = Random.Range(0,3);
-            } while (selectMaterial == 2);
-
-            Material[] s = new Material[1];
-            s[0] = gm.GetComponent<GameManager>().materials[selectMaterial];
-            if (!gm.GetComponent<GameManager>().isGameOver)
-            {
-                mainChar.transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().materials = s;   
-            }
-            gm.GetComponent<GameManager>().currentColor = selectMaterial;
+            
+            gm.GetComponent<GameManager>().ChangeTheColor();
             
             //265-335
             gm.GetComponent<GameManager>().jumperYellow = true;

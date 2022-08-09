@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: YellowColoring 6
+  m_Name: OrangeColoring 8
   m_Shader: {fileID: -6465566751694194690, guid: 184bf9287cba7fa43b59eef50ed3d6b5, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -47,14 +47,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _LocationFloat: 0.08
+    - _LocationFloat: 0
     - _Metallic: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Ring: -1
-    - _Smoothness: 0.526
-    - _Thickness: 0
+    - _Smoothness: 0.255
     m_Colors:
-    - _Color: {r: 1, g: 0.6784314, b: 0, a: 0}
-    - _Edge_Color: {r: 0, g: 0, b: 0, a: 0}
+    - _Color: {r: 1, g: 0.9882353, b: 0, a: 0}
   m_BuildTextureStacks: []
