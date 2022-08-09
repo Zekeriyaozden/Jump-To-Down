@@ -34,9 +34,15 @@ public class GameManager : MonoBehaviour
     public AudioSource audioSrc;
     public GameObject CanvasSkor;
     private bool particleFlag;
+    public float horizDir;
+    public int screenWidth;
+    public GameObject[] gObjSticks;
 
     void Start()
     {
+        //deneme = Camera.main.WorldToScreenPoint(mainChar.transform.position);
+        screenWidth = Screen.width;
+        horizDir = 0;
         particleFlag = true;
         audioSrc = GetComponent<AudioSource>();
         Application.targetFrameRate = 240;
@@ -171,7 +177,7 @@ public class GameManager : MonoBehaviour
 
     private void gameOver()
     {
-        if (mainChar.transform.position.x < -10f || mainChar.transform.position.x > 8 || mainChar.transform.position.y < -12)
+        if (mainChar.transform.position.y < -12)
         {
             isGameOver = true;
             hitParticleGM(currentColor);
@@ -198,6 +204,33 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //deneme = Camera.main.WorldToScreenPoint(mainChar.transform.position);
+        float s = Camera.main.WorldToScreenPoint(mainChar.transform.position).x;
+
+        if (s < 5)
+        {
+            foreach (var stick in gObjSticks)
+            {
+                if (stick.GetComponent<StickController>().horizDir < 0)
+                {
+                    stick.GetComponent<StickController>().horizDir = stick.GetComponent<StickController>().horizDir * -1f;
+                    horizDir = stick.GetComponent<StickController>().horizDir;
+                }
+            }   
+        }
+        if (s > screenWidth - 5)
+        {
+            foreach (var stick in gObjSticks)
+            {
+                if (stick.GetComponent<StickController>().horizDir > 0)
+                {
+                    stick.GetComponent<StickController>().horizDir = stick.GetComponent<StickController>().horizDir * -1f;   
+                    horizDir = stick.GetComponent<StickController>().horizDir;
+                }
+            }
+        }
+        
+
         if (isGameOver && Input.GetMouseButtonDown(0))
         {
                 tryAgain();

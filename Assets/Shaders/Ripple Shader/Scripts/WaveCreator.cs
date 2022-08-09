@@ -50,7 +50,6 @@ public class WaveCreator : MonoBehaviour
             material.SetFloat("_Ring", ring);
             if (material.GetFloat("_Ring") < -9f || material.GetFloat("_Ring") == 0)
             {
-                Debug.Log("Entered");
                 material.SetFloat("_Ring", 1f);
             }
         }
