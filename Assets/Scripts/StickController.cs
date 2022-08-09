@@ -15,13 +15,16 @@ public class StickController : MonoBehaviour
     private float high;
     private float direction;
     private float progress;
-    private float horizDir;
+    public float horizDir;
+    private float horizDirFlt;
     public bool isYellow;
     public bool isBlue;
     public bool isPurple;
+    private float charAngle;
     // 0-purple  1-blue 2-yellow
     void Start()
     {
+        charAngle = 0;
         flag = true;
         gm = GameObject.Find("GameManager");
         k = 0;
@@ -54,6 +57,10 @@ public class StickController : MonoBehaviour
             {
                 gm.GetComponent<GameManager>().charFall();
             }
+
+            float ang = Mathf.Lerp(charAngle, 0, k);
+            mainChar.transform.eulerAngles = new Vector3(0,0,ang);
+            
             mainChar.transform.Translate(new Vector3(0,direction,0) * Time.deltaTime * speed);
             mainChar.transform.Translate(new Vector3(horizDir,0,0) * Time.deltaTime * speedOfHoriz);
         }
@@ -73,6 +80,9 @@ public class StickController : MonoBehaviour
             {
                 gm.GetComponent<GameManager>().charFall();
             }
+            
+            float ang = Mathf.Lerp(charAngle, 0, k);
+            mainChar.transform.eulerAngles = new Vector3(0,0,ang);
             
             mainChar.transform.Translate(new Vector3(0,direction,0) * Time.deltaTime * speed);
             mainChar.transform.Translate(new Vector3(horizDir,0,0) * Time.deltaTime * speedOfHoriz);
@@ -94,6 +104,10 @@ public class StickController : MonoBehaviour
                 gm.GetComponent<GameManager>().charFall();
             }
             
+            float ang = Mathf.Lerp(charAngle, 0, k);
+            mainChar.transform.eulerAngles = new Vector3(0,0,ang);
+            
+            
             mainChar.transform.Translate(new Vector3(0,direction,0) * Time.deltaTime * speed);
             mainChar.transform.Translate(new Vector3(horizDir,0,0) * Time.deltaTime * speedOfHoriz);
         }
@@ -102,9 +116,9 @@ public class StickController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(transform.eulerAngles.z);
         k = 0;
         horizDir = 0f;
+        horizDirFlt = gm.GetComponent<GameManager>().horizDir;
         gm.GetComponent<GameManager>().jumperYellow = false;
         gm.GetComponent<GameManager>().jumperBlue = false;
         gm.GetComponent<GameManager>().jumperPurple = false;
@@ -146,21 +160,21 @@ public class StickController : MonoBehaviour
             
             gm.GetComponent<GameManager>().jumperPurple = true;
             float eulerZ = transform.eulerAngles.z;
-            if (eulerZ > 200)
+            if (eulerZ > 270)
             {
                 eulerZ = eulerZ - 360f;
             }
-            if (eulerZ >= 50f)
+            if (eulerZ >= 90f)
             {
                 horizDir = -1f;
-            }else if (eulerZ <= -50f)
+            }else if (eulerZ <= -90f)
             {
                 horizDir = 1f;
             }
             else
             {
-                float rate = (2f) / (50f - -50f);
-                horizDir = ((50f - eulerZ) * rate) - 1;
+                float rate = (2f) / (90f - -90f);
+                horizDir = ((90f - eulerZ) * rate) - 1;
             }
         }
         //---------------------------------------------------------
@@ -203,22 +217,23 @@ public class StickController : MonoBehaviour
             gm.GetComponent<GameManager>().jumperBlue = true;
             
             float eulerZ = transform.eulerAngles.z;
-            if (eulerZ > 200)
+            if (eulerZ > 270)
             {
                 eulerZ = eulerZ - 360f;
             }
-            if (eulerZ >= 50f)
+            if (eulerZ >= 90f)
             {
                 horizDir = -1f;
-            }else if (eulerZ <= -50f)
+            }else if (eulerZ <= -90f)
             {
                 horizDir = 1f;
             }
             else
             {
-                float rate = (2f) / (50f - -50f);
-                horizDir = ((50f - eulerZ) * rate) - 1;
+                float rate = (2f) / (90f - -90f);
+                horizDir = ((90f - eulerZ) * rate) - 1;
             }
+
         }
         //---------------------------------------------------------
         if (other.tag == "Player" && gameObject.tag == "yellow")
@@ -258,25 +273,31 @@ public class StickController : MonoBehaviour
             gm.GetComponent<GameManager>().jumperYellow = true;
             
             float eulerZ = transform.eulerAngles.z;
-            if (eulerZ > 200)
+            if (eulerZ > 270)
             {
                 eulerZ = eulerZ - 360f;
             }
-            if (eulerZ >= 50f)
+            if (eulerZ >= 90f)
             {
                 horizDir = -1f;
-            }else if (eulerZ <= -50f)
+            }else if (eulerZ <= -90f)
             {
                 horizDir = 1f;
             }
             else
             {
-                float rate = (2f) / (50f - -50f);
-                horizDir = ((50f - eulerZ) * rate) - 1;
+                float rate = (2f) / (90f - -90f);
+                horizDir = ((90f - eulerZ) * rate) - 1;
             }
+
         }
-        
-        
+
+        charAngle = horizDir * 35f * -1f;
+        mainChar.transform.eulerAngles = new Vector3(0, 0, charAngle);
+        horizDir = horizDir * 2f;
+        horizDir = horizDir + horizDirFlt;
+        gm.GetComponent<GameManager>().horizDir = horizDir;
+
     }
 
 }
