@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ColoringShaderMaterial
+  m_Name: OrangeColoring 3
   m_Shader: {fileID: -6465566751694194690, guid: 184bf9287cba7fa43b59eef50ed3d6b5, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -48,9 +48,11 @@ Material:
     m_Ints: []
     m_Floats:
     - _LocationFloat: 0
+    - _Metallic: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Ring: 2.59
+    - _Ring: -1
+    - _Smoothness: 0.255
     m_Colors:
-    - _Color: {r: 0.1864239, g: 1, b: 0.0132075, a: 0}
+    - _Color: {r: 1, g: 0.6776237, b: 0, a: 0}
   m_BuildTextureStacks: []
