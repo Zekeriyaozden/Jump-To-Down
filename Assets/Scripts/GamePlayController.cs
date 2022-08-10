@@ -6,6 +6,8 @@ public class GamePlayController : MonoBehaviour
 {
     private bool flag;
     public GameObject gObj;
+    private int UILastIndex;
+    private int UITargetIndex;
     void Start()
     {
         flag = true;
@@ -19,6 +21,10 @@ public class GamePlayController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (UILastIndex < UITargetIndex)
+        {
+            
+        }
         if (flag && Input.GetMouseButtonDown(0))
         {
             flag = false;
