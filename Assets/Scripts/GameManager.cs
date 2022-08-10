@@ -43,18 +43,46 @@ public class GameManager : MonoBehaviour
     // public float screenDevideTo828;
     private int countFillObject;
     public GameObject fillObject;
+    //UI
+    public GameObject soundOnBtn;
+    public GameObject soundOffBtn;
+    public GameObject hapticOnBtn;
+    public GameObject hapticOffBtn;
+    //
+    public GameObject filledObject;
 
     void Start()
     {
-        //fillObject.transform.GetChild(10).gameObject.transform.position = new Vector3(0, 0, 0);
+        isHapticOn = true;
+        isSoundOn = true;
+        if (PlayerPrefs.GetInt("Sound", 1) == 1)
+        {
+            soundOnBtn.SetActive(false);
+            soundOffBtn.SetActive(true);
+            isSoundOn = true;
+        }
+        else
+        {
+            soundOnBtn.SetActive(true);
+            soundOffBtn.SetActive(false);
+            isSoundOn = false;
+        }
+
+        if (PlayerPrefs.GetInt("Haptic", 1) == 1)
+        {
+            hapticOnBtn.SetActive(false);
+            hapticOffBtn.SetActive(true);
+            isHapticOn = true;
+        }
+        else
+        {
+            hapticOnBtn.SetActive(true);
+            hapticOffBtn.SetActive(false);
+            isHapticOn = false;
+        }
         countFillObject = 0;
         screenWidth = Screen.width;
-        /*screenDevideTo828 = (float) screenWidth / 828f;
-        mainChar.transform.localScale *= screenDevideTo828;
-        speed *= screenDevideTo828;
-        speedOfHoriz *= screenDevideTo828;
-        charts.transform.localScale *= screenDevideTo828;
-        high *= screenDevideTo828;*/
+
         horizDir = 0;
         particleFlag = true;
         audioSrc = GetComponent<AudioSource>();
@@ -66,8 +94,7 @@ public class GameManager : MonoBehaviour
         isGameOver = false;
         flag = false;
         jumperBlue = false;
-        isHapticOn = true;
-        isSoundOn = true;
+        StartCoroutine(FilledObject());
     }
     //-------------------------------------------------------------------------------------
 /*
@@ -86,6 +113,40 @@ public class GameManager : MonoBehaviour
             }
             gm.GetComponent<GameManager>().currentColor = selectMaterial;
  */
+//-------------------------------------------------------------
+//UI
+    public void soundOff()
+    {
+        isSoundOn = false;
+        soundOffBtn.SetActive(false);
+        soundOnBtn.SetActive(true);
+        PlayerPrefs.SetInt("Sound",0);
+    }
+
+    public void soundOn()
+    {
+        isSoundOn = true;
+        soundOffBtn.SetActive(true);
+        soundOnBtn.SetActive(false);
+        PlayerPrefs.SetInt("Sound",1);
+    }
+
+    public void hapticOn()
+    {
+        isHapticOn = true;
+        hapticOnBtn.SetActive(false);
+        hapticOffBtn.SetActive(true);
+        PlayerPrefs.SetInt("Haptic",1);
+    }
+
+    public void hapticOff()
+    {
+        isHapticOn = false;
+        hapticOffBtn.SetActive(false);
+        hapticOnBtn.SetActive(true);
+        PlayerPrefs.SetInt("Haptic",0);
+    }
+//-------------------------------------------------------------
     public bool ChangeTheColor()
     {
         if (materialList.Count > 2)
@@ -105,7 +166,41 @@ public class GameManager : MonoBehaviour
             hitParticle(1);
             mainChar.transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().enabled = false;
             charts.SetActive(false);
+            StartCoroutine(FilledObject());
             return false;
+        }
+    }
+
+    private IEnumerator FilledObject()
+    {
+        Vector3 pos;
+        Vector3 scale;
+        float k = 0;
+        pos = filledObject.transform.position;
+        scale = filledObject.transform.localScale;
+        for (int i = 0; i <= 200; i++)
+        {
+            yield return new WaitForSeconds(.6f / 200f);
+            k += 1 / 200f;
+            filledObject.transform.position = Vector3.Lerp(pos, new Vector3(-0.9f, -25.3f, pos.z),k);
+            filledObject.transform.localScale = Vector3.Lerp(scale, new Vector3(9.5f, 9.5f, 9.5f),k);
+        }
+        StartCoroutine(FilledObject2());
+    }
+    
+    private IEnumerator FilledObject2()
+    {
+        Vector3 pos;
+        Vector3 scale;
+        float k = 0;
+        pos = filledObject.transform.position;
+        scale = filledObject.transform.localScale;
+        for (int i = 0; i <= 200; i++)
+        {
+            yield return new WaitForSeconds(.6f / 200f);
+            k += 1 / 200f;
+            filledObject.transform.position = Vector3.Lerp(pos, new Vector3(-0.9f, -1f, pos.z),k);
+            filledObject.transform.localScale = Vector3.Lerp(scale, new Vector3(4.5f, 4.5f, 4.5f),k);
         }
     }
     
@@ -125,9 +220,9 @@ public class GameManager : MonoBehaviour
     
     public void fillTheObject()
     {
-        Debug.Log(countFillObject);
         if (1 < materialList.Count)
         {
+            gameObject.GetComponent<GamePlayController>().incramentUI();
             Material[] ms = new Material[1];
             ms[0] = shaderMaterialList[countFillObject];
             fillObject.transform.GetChild(countFillObject).gameObject.GetComponent<MeshRenderer>().materials = ms;

@@ -51,7 +51,7 @@ Material:
     - _Metallic: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Ring: -0.03400057
+    - _Ring: 0.12699927
     - _Smoothness: 0.255
     m_Colors:
     - _Color: {r: 1, g: 0.9882353, b: 0, a: 1}
