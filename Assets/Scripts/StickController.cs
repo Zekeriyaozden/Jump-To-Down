@@ -139,7 +139,6 @@ public class StickController : MonoBehaviour
                 gm.GetComponent<GameManager>().speed += gm.GetComponent<GameManager>().speed * (2f / 100f);
                 gm.GetComponent<GameManager>().charJump();
                 gm.GetComponent<GameManager>().HapticJump();
-                gm.GetComponent<GameManager>().skor++;
                 gm.GetComponent<GameManager>().fillTheObject();
                 gm.GetComponent<GameManager>().cloudProgress();
             }
@@ -184,7 +183,6 @@ public class StickController : MonoBehaviour
                 gm.GetComponent<GameManager>().speed += gm.GetComponent<GameManager>().speed * (2f / 100f);
                 gm.GetComponent<GameManager>().charJump();
                 gm.GetComponent<GameManager>().HapticJump();
-                gm.GetComponent<GameManager>().skor++;
                 gm.GetComponent<GameManager>().fillTheObject();
                 gm.GetComponent<GameManager>().cloudProgress();
             }
@@ -231,7 +229,6 @@ public class StickController : MonoBehaviour
                 gm.GetComponent<GameManager>().speed += gm.GetComponent<GameManager>().speed * (2f / 100f);
                 gm.GetComponent<GameManager>().charJump();
                 gm.GetComponent<GameManager>().HapticJump();
-                gm.GetComponent<GameManager>().skor++;
                 gm.GetComponent<GameManager>().fillTheObject();
                 gm.GetComponent<GameManager>().cloudProgress();
             }
