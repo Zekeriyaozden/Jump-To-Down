@@ -62,6 +62,6 @@ Material:
     m_Colors:
     - _Base_Color: {r: 1, g: 0.9882353, b: 0, a: 0}
     - _Fresnel_Color: {r: 0, g: 0.07058859, b: 1, a: 0}
-    - _WaveStartPos: {r: -0.62999976, g: 2.2137096, b: -17.90001, a: 0}
+    - _WaveStartPos: {r: -0.63000005, g: 1.9745042, b: -17.899998, a: 0}
     - _Wave_Start_position: {r: 0, g: 1.43, b: -0.22, a: 0}
   m_BuildTextureStacks: []
