@@ -21,9 +21,11 @@ public class StickController : MonoBehaviour
     public bool isBlue;
     public bool isPurple;
     private float charAngle;
+    private bool flagMain;
     // 0-purple  1-blue 2-yellow
     void Start()
     {
+        flagMain = true;
         charAngle = 0;
         flag = true;
         gm = GameObject.Find("GameManager");
@@ -38,6 +40,7 @@ public class StickController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        flagMain = gm.GetComponent<GameManager>().stickBool;
         high = gm.GetComponent<GameManager>().high;
         speed = gm.GetComponent<GameManager>().speed;
         progress = high / speed;
@@ -113,159 +116,172 @@ public class StickController : MonoBehaviour
         
     }
 
+    private IEnumerator flagControl()
+    {
+        yield return new WaitForSeconds(.4f);
+        gm.GetComponent<GameManager>().stickBool = true;
+    }
+    
+
     private void OnTriggerEnter(Collider other)
     {
-        k = 0;
-        horizDir = 0f;
-        horizDirFlt = gm.GetComponent<GameManager>().horizDir;
-        gm.GetComponent<GameManager>().jumperYellow = false;
-        gm.GetComponent<GameManager>().jumperBlue = false;
-        gm.GetComponent<GameManager>().jumperPurple = false;
-        if (other.tag == "Player" && gameObject.tag == "purple")
+        if (gm.GetComponent<GameManager>().stickBool)
         {
+            gm.GetComponent<GameManager>().stickBool = false;
+            StartCoroutine(flagControl());
+            k = 0;
+            horizDir = 0f;
+            horizDirFlt = gm.GetComponent<GameManager>().horizDir;
+            gm.GetComponent<GameManager>().jumperYellow = false;
+            gm.GetComponent<GameManager>().jumperBlue = false;
+            gm.GetComponent<GameManager>().jumperPurple = false;
+            if (other.tag == "Player" && gameObject.tag == "purple")
+            {
 
-            
-            if (gm.GetComponent<GameManager>().currentColor != 0)
-            {
-                gm.GetComponent<GameManager>().isGameOver = true;
-                gm.GetComponent<GameManager>().HapticFail();
-                gm.GetComponent<GameManager>().hitParticle(gm.GetComponent<GameManager>().currentColor);
-                mainChar.GetComponent<BoxCollider>().enabled = false;
-                mainChar.transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().enabled = false;
-                //gm.GetComponent<GameManager>().isGameOver = true;
-            }else
-            {
-                gm.GetComponent<GameManager>().hitParticle(0);
-                gm.GetComponent<GameManager>().speed += gm.GetComponent<GameManager>().speed * (2f / 100f);
-                gm.GetComponent<GameManager>().charJump();
-                gm.GetComponent<GameManager>().HapticJump();
-                gm.GetComponent<GameManager>().ChangeTheColor();
-                gm.GetComponent<GameManager>().fillTheObject();
-                gm.GetComponent<GameManager>().cloudProgress();
-            }
+                
+                if (gm.GetComponent<GameManager>().currentColor != 0)
+                {
+                    gm.GetComponent<GameManager>().isGameOver = true;
+                    gm.GetComponent<GameManager>().HapticFail();
+                    gm.GetComponent<GameManager>().hitParticle(gm.GetComponent<GameManager>().currentColor);
+                    mainChar.GetComponent<BoxCollider>().enabled = false;
+                    mainChar.transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().enabled = false;
+                    //gm.GetComponent<GameManager>().isGameOver = true;
+                }else
+                {
+                    gm.GetComponent<GameManager>().hitParticle(0);
+                    gm.GetComponent<GameManager>().speed += gm.GetComponent<GameManager>().speed * (2f / 100f);
+                    gm.GetComponent<GameManager>().charJump();
+                    gm.GetComponent<GameManager>().HapticJump();
+                    gm.GetComponent<GameManager>().ChangeTheColor();
+                    gm.GetComponent<GameManager>().fillTheObject();
+                    gm.GetComponent<GameManager>().cloudProgress();
+                }
 
 
-            
-            
-            gm.GetComponent<GameManager>().jumperPurple = true;
-            float eulerZ = transform.eulerAngles.z;
-            if (eulerZ > 270)
-            {
-                eulerZ = eulerZ - 360f;
+                
+                
+                gm.GetComponent<GameManager>().jumperPurple = true;
+                float eulerZ = transform.eulerAngles.z;
+                if (eulerZ > 270)
+                {
+                    eulerZ = eulerZ - 360f;
+                }
+                if (eulerZ >= 90f)
+                {
+                    horizDir = -1f;
+                }else if (eulerZ <= -90f)
+                {
+                    horizDir = 1f;
+                }
+                else
+                {
+                    float rate = (2f) / (90f - -90f);
+                    horizDir = ((90f - eulerZ) * rate) - 1;
+                }
             }
-            if (eulerZ >= 90f)
+            //---------------------------------------------------------
+            if (other.tag == "Player" && gameObject.tag == "blue" )
             {
-                horizDir = -1f;
-            }else if (eulerZ <= -90f)
-            {
-                horizDir = 1f;
-            }
-            else
-            {
-                float rate = (2f) / (90f - -90f);
-                horizDir = ((90f - eulerZ) * rate) - 1;
-            }
-        }
-        //---------------------------------------------------------
-        if (other.tag == "Player" && gameObject.tag == "blue" )
-        {
 
-            if (gm.GetComponent<GameManager>().currentColor != 1)
-            {
-                gm.GetComponent<GameManager>().isGameOver = true;
-                gm.GetComponent<GameManager>().HapticFail();
-                gm.GetComponent<GameManager>().hitParticle(gm.GetComponent<GameManager>().currentColor);
-                mainChar.GetComponent<BoxCollider>().enabled = false;
-                mainChar.transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().enabled = false;
-                //gm.GetComponent<GameManager>().isGameOver = true;
-            }else
-            {
-                gm.GetComponent<GameManager>().hitParticle(1);
-                gm.GetComponent<GameManager>().speed += gm.GetComponent<GameManager>().speed * (2f / 100f);
-                gm.GetComponent<GameManager>().charJump();
-                gm.GetComponent<GameManager>().HapticJump();
-                gm.GetComponent<GameManager>().ChangeTheColor();
-                gm.GetComponent<GameManager>().fillTheObject();
-                gm.GetComponent<GameManager>().cloudProgress();
-            }
-            
+                if (gm.GetComponent<GameManager>().currentColor != 1)
+                {
+                    gm.GetComponent<GameManager>().isGameOver = true;
+                    gm.GetComponent<GameManager>().HapticFail();
+                    gm.GetComponent<GameManager>().hitParticle(gm.GetComponent<GameManager>().currentColor);
+                    mainChar.GetComponent<BoxCollider>().enabled = false;
+                    mainChar.transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().enabled = false;
+                    //gm.GetComponent<GameManager>().isGameOver = true;
+                }else
+                {
+                    gm.GetComponent<GameManager>().hitParticle(1);
+                    gm.GetComponent<GameManager>().speed += gm.GetComponent<GameManager>().speed * (2f / 100f);
+                    gm.GetComponent<GameManager>().charJump();
+                    gm.GetComponent<GameManager>().HapticJump();
+                    gm.GetComponent<GameManager>().ChangeTheColor();
+                    gm.GetComponent<GameManager>().fillTheObject();
+                    gm.GetComponent<GameManager>().cloudProgress();
+                }
+                
 
-            
-            //25-95
-            gm.GetComponent<GameManager>().jumperBlue = true;
-            
-            float eulerZ = transform.eulerAngles.z;
-            if (eulerZ > 270)
-            {
-                eulerZ = eulerZ - 360f;
+                
+                //25-95
+                gm.GetComponent<GameManager>().jumperBlue = true;
+                
+                float eulerZ = transform.eulerAngles.z;
+                if (eulerZ > 270)
+                {
+                    eulerZ = eulerZ - 360f;
+                }
+                if (eulerZ >= 90f)
+                {
+                    horizDir = -1f;
+                }else if (eulerZ <= -90f)
+                {
+                    horizDir = 1f;
+                }
+                else
+                {
+                    float rate = (2f) / (90f - -90f);
+                    horizDir = ((90f - eulerZ) * rate) - 1;
+                }
+
             }
-            if (eulerZ >= 90f)
+            //---------------------------------------------------------
+            if (other.tag == "Player" && gameObject.tag == "yellow" )
             {
-                horizDir = -1f;
-            }else if (eulerZ <= -90f)
-            {
-                horizDir = 1f;
-            }
-            else
-            {
-                float rate = (2f) / (90f - -90f);
-                horizDir = ((90f - eulerZ) * rate) - 1;
+
+                if (gm.GetComponent<GameManager>().currentColor != 2)
+                {
+                    gm.GetComponent<GameManager>().isGameOver = true;
+                    gm.GetComponent<GameManager>().HapticFail();
+                    gm.GetComponent<GameManager>().hitParticle(gm.GetComponent<GameManager>().currentColor);
+                    mainChar.GetComponent<BoxCollider>().enabled = false;
+                    mainChar.transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().enabled = false;
+                }
+                else
+                {
+                    gm.GetComponent<GameManager>().hitParticle(2);
+                    gm.GetComponent<GameManager>().speed += gm.GetComponent<GameManager>().speed * (2f / 100f);
+                    gm.GetComponent<GameManager>().charJump();
+                    gm.GetComponent<GameManager>().HapticJump();
+                    gm.GetComponent<GameManager>().ChangeTheColor();
+                    gm.GetComponent<GameManager>().fillTheObject();
+                    gm.GetComponent<GameManager>().cloudProgress();
+                }
+                
+
+                
+                //265-335
+                gm.GetComponent<GameManager>().jumperYellow = true;
+                
+                float eulerZ = transform.eulerAngles.z;
+                if (eulerZ > 270)
+                {
+                    eulerZ = eulerZ - 360f;
+                }
+                if (eulerZ >= 90f)
+                {
+                    horizDir = -1f;
+                }else if (eulerZ <= -90f)
+                {
+                    horizDir = 1f;
+                }
+                else
+                {
+                    float rate = (2f) / (90f - -90f);
+                    horizDir = ((90f - eulerZ) * rate) - 1;
+                }
+
             }
 
-        }
-        //---------------------------------------------------------
-        if (other.tag == "Player" && gameObject.tag == "yellow" )
-        {
+            charAngle = horizDir * 35f * -1f;
+            mainChar.transform.eulerAngles = new Vector3(0, 0, charAngle);
+            horizDir = horizDir * 2f;
+            horizDir = horizDir + horizDirFlt;
+            gm.GetComponent<GameManager>().horizDir = horizDir;
 
-            if (gm.GetComponent<GameManager>().currentColor != 2)
-            {
-                gm.GetComponent<GameManager>().isGameOver = true;
-                gm.GetComponent<GameManager>().HapticFail();
-                gm.GetComponent<GameManager>().hitParticle(gm.GetComponent<GameManager>().currentColor);
-                mainChar.GetComponent<BoxCollider>().enabled = false;
-                mainChar.transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().enabled = false;
-            }
-            else
-            {
-                gm.GetComponent<GameManager>().hitParticle(2);
-                gm.GetComponent<GameManager>().speed += gm.GetComponent<GameManager>().speed * (2f / 100f);
-                gm.GetComponent<GameManager>().charJump();
-                gm.GetComponent<GameManager>().HapticJump();
-                gm.GetComponent<GameManager>().ChangeTheColor();
-                gm.GetComponent<GameManager>().fillTheObject();
-                gm.GetComponent<GameManager>().cloudProgress();
-            }
-            
-
-            
-            //265-335
-            gm.GetComponent<GameManager>().jumperYellow = true;
-            
-            float eulerZ = transform.eulerAngles.z;
-            if (eulerZ > 270)
-            {
-                eulerZ = eulerZ - 360f;
-            }
-            if (eulerZ >= 90f)
-            {
-                horizDir = -1f;
-            }else if (eulerZ <= -90f)
-            {
-                horizDir = 1f;
-            }
-            else
-            {
-                float rate = (2f) / (90f - -90f);
-                horizDir = ((90f - eulerZ) * rate) - 1;
-            }
-
-        }
-
-        charAngle = horizDir * 35f * -1f;
-        mainChar.transform.eulerAngles = new Vector3(0, 0, charAngle);
-        horizDir = horizDir * 2f;
-        horizDir = horizDir + horizDirFlt;
-        gm.GetComponent<GameManager>().horizDir = horizDir;
+        } 
 
     }
 

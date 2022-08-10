@@ -52,8 +52,10 @@ public class GameManager : MonoBehaviour
     private float sliderValue;
     public List<GameObject> stars;
     private bool chartsBool;
+    public bool stickBool;
     void Start()
     {
+        stickBool = true;
         chartsBool = true;
         slider = gameObject.GetComponent<GamePlayController>().slider.GetComponent<Slider>();
         sliderMaxValue = slider.maxValue;
@@ -306,10 +308,10 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < 30; i++)
         {
             yield return new WaitForSeconds(0.1f);
-            GameObject partic = Instantiate(FailparticleObj);
+            /*GameObject partic = Instantiate(FailparticleObj);
             partic.transform.position = mainChar.transform.position;
             partic.GetComponent<ParticleSystemRenderer>().material = materials[material];
-            StartCoroutine(particleDestroyer(partic));
+            StartCoroutine(particleDestroyer(partic));*/
         }
     }
     
@@ -325,7 +327,14 @@ public class GameManager : MonoBehaviour
     }
     
     //------------------------------------------------------------------------------------
-    
+
+    public void HapticSuccess()
+    {
+        if (isHapticOn)
+        {
+            MMVibrationManager.Haptic(HapticTypes.Success, false, true, this);   
+        }
+    }
     public void HapticJump()
     {
         if (isHapticOn)
@@ -377,6 +386,7 @@ public class GameManager : MonoBehaviour
     public void tryAgainBtn()
     {
         SceneManager.LoadScene(0);
+        HapticSuccess();
     }
     
     //TODO nextLevel check
@@ -384,6 +394,7 @@ public class GameManager : MonoBehaviour
     public void nextLevelBtn()
     {
         SceneManager.LoadScene(0);
+        HapticSuccess();
     }
     
     private void sliderControll()
@@ -454,10 +465,10 @@ public class GameManager : MonoBehaviour
             StartCoroutine(FilledObject());
             chartsBool = false;
         }
-        if (isGameOver)
+        /*if (isGameOver)
         {
             sliderControll();
-        }
+        }*/
 
         if (!jumperBlue && flag)
         {
