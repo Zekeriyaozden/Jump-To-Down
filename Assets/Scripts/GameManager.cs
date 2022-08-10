@@ -24,9 +24,6 @@ public class GameManager : MonoBehaviour
     public float high;
     public Material[] materials;
     public GameObject UIGameOver;
-    public GameObject UISkor;
-    public int skor;
-    public GameObject UIBestScore;
     public GameObject particleObj;
     public GameObject FailparticleObj;
     private bool hapticFailFlag;
@@ -94,7 +91,6 @@ public class GameManager : MonoBehaviour
         Application.targetFrameRate = 240;
         cloudFlag = false;
         hapticFailFlag = true;
-        skor = 0;
         Time.timeScale = 1;
         isGameOver = false;
         flag = false;
@@ -341,7 +337,6 @@ public class GameManager : MonoBehaviour
     public void HapticFail()
     {
         CanvasSkor.SetActive(false);
-        UIGameOver.SetActive(true);
         isGameOver = true;
         if (isHapticOn)
         {
@@ -369,8 +364,7 @@ public class GameManager : MonoBehaviour
             {
                 CanvasSkor.SetActive(false);
             }
-
-            UIGameOver.SetActive(true);
+            
             isGameOver = true;
         }
     }
