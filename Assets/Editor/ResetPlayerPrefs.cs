@@ -6,7 +6,6 @@ using UnityEditor;
 
 public class EditorTools : Editor
 {
-    public int asda;
     [MenuItem("Tools/Reset Player Prefs")]
     public static void ResetPlayerPrefs()
     {

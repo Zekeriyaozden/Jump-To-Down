@@ -30,12 +30,12 @@
       <option value="$PROJECT_DIR$/Assets/NiceVibrations/Common/Scripts/Editor/MMNVBuildPostProcessor.cs" />
       <option value="$PROJECT_DIR$/Assets/NiceVibrations/Demos/DemoAssets/RegularPresetsDemo/RegularPresetsDemoManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" />
-      <option value="$PROJECT_DIR$/Assets/Editor/ResetPlayerPrefs.cs" />
       <option value="$PROJECT_DIR$/Assets/Editor/MyWindow.cs" />
       <option value="$PROJECT_DIR$/Assets/Shaders/Ripple Shader/Scripts/WaveCreator.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/StickController.cs" />
-      <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
       <option value="$PROJECT_DIR$/Assets/Scripts/GamePlayController.cs" />
+      <option value="$PROJECT_DIR$/Assets/Editor/ResetPlayerPrefs.cs" />
+      <option value="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="2CnQ2HX0IMT2RPwv2MXa4F3867U" />
@@ -83,7 +83,7 @@
       <workItem from="1659534595361" duration="2638000" />
       <workItem from="1659789863203" duration="1421000" />
       <workItem from="1660043086833" duration="16774000" />
-      <workItem from="1660126258194" duration="1402000" />
+      <workItem from="1660126258194" duration="7789000" />
     </task>
     <servers />
   </component>
@@ -94,24 +94,5 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/StickController.cs</url>
-          <line>169</line>
-          <properties documentPath="C:\Users\Maleriya\Desktop\Pigeon Gaming\Jump-To-Down\Assets\Scripts\StickController.cs" initialLine="169" containingFunctionPresentation="method 'OnTriggerEnter'">
-            <startOffsets>
-              <option value="5763" />
-            </startOffsets>
-            <endOffsets>
-              <option value="5818" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
