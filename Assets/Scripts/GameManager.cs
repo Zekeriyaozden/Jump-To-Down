@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     public float speedOfHoriz;
     public float high;
     public Material[] materials;
-    public GameObject UIGameOver;
+    //public GameObject UIGameOver;
     public GameObject particleObj;
     public GameObject FailparticleObj;
     private bool hapticFailFlag;
@@ -202,6 +202,7 @@ public class GameManager : MonoBehaviour
             filledObject.transform.position = Vector3.Lerp(pos, new Vector3(-0.9f, -1f, pos.z),k);
             filledObject.transform.localScale = Vector3.Lerp(scale, new Vector3(4.5f, 4.5f, 4.5f),k);
         }
+        sliderControll();
     }
     
     //-------------------------------------------------------------------------------------
@@ -228,6 +229,10 @@ public class GameManager : MonoBehaviour
             fillObject.transform.GetChild(countFillObject).gameObject.GetComponent<MeshRenderer>().materials = ms;
             StartCoroutine(shaderCor(shaderMaterialList[countFillObject]));
             countFillObject++;
+        }
+        else
+        {
+            
         }
     }
 
@@ -369,9 +374,42 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void tryAgain()
+    public void tryAgainBtn()
     {
         SceneManager.LoadScene(0);
+    }
+    
+    //TODO nextLevel check
+
+    public void nextLevelBtn()
+    {
+        SceneManager.LoadScene(0);
+    }
+    
+    private void sliderControll()
+    {
+        if (sliderValue/sliderMaxValue < .5f)
+        {
+            stars[3].SetActive(true);
+            stars[7].SetActive(true);
+            stars[9].SetActive(true);
+        }
+        else if (sliderValue / sliderMaxValue < .75f)
+        {
+            stars[0].SetActive(true);   
+            stars[4].SetActive(true);
+            stars[8].SetActive(true);
+        }else if (sliderValue / sliderMaxValue < .99f)
+        {
+            stars[1].SetActive(true);
+            stars[5].SetActive(true);
+            stars[8].SetActive(true);
+        }else
+        {
+            stars[2].SetActive(true);
+            stars[6].SetActive(true);
+            stars[8].SetActive(true);
+        }
     }
 
     // Update is called once per frame
@@ -404,11 +442,6 @@ public class GameManager : MonoBehaviour
             }
         }
         
-
-        if (isGameOver && Input.GetMouseButtonDown(0))
-        {
-                tryAgain();
-        }
         
         if (cloudFlag)
         {
@@ -421,25 +454,11 @@ public class GameManager : MonoBehaviour
             StartCoroutine(FilledObject());
             chartsBool = false;
         }
-        if (isGameOver && sliderValue/sliderMaxValue < .5f)
+        if (isGameOver)
         {
-            UIGameOver.SetActive(true);
-            stars[3].SetActive(true);
+            sliderControll();
         }
-        else if(isGameOver)
-        {
-            if (sliderValue / sliderMaxValue < 75f)
-            {
-             stars[0].SetActive(true);   
-            }else if (sliderValue / sliderMaxValue < 99f)
-            {
-                stars[1].SetActive(true);
-            }
-            else
-            {
-                stars[2].SetActive(true);
-            }
-        }
+
         if (!jumperBlue && flag)
         {
             mainChar.transform.Translate(new Vector3(0,-1f,0) * Time.deltaTime * 6f);

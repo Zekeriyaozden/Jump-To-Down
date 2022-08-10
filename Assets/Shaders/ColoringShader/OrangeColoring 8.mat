@@ -54,5 +54,5 @@ Material:
     - _Ring: 0.15
     - _Smoothness: 0.255
     m_Colors:
-    - _Color: {r: 1, g: 0.9882353, b: 0, a: 0}
+    - _Color: {r: 1, g: 0.6784314, b: 0, a: 1}
   m_BuildTextureStacks: []

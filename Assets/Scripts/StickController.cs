@@ -139,11 +139,12 @@ public class StickController : MonoBehaviour
                 gm.GetComponent<GameManager>().speed += gm.GetComponent<GameManager>().speed * (2f / 100f);
                 gm.GetComponent<GameManager>().charJump();
                 gm.GetComponent<GameManager>().HapticJump();
+                gm.GetComponent<GameManager>().ChangeTheColor();
                 gm.GetComponent<GameManager>().fillTheObject();
                 gm.GetComponent<GameManager>().cloudProgress();
             }
 
-            gm.GetComponent<GameManager>().ChangeTheColor();
+
             
             
             gm.GetComponent<GameManager>().jumperPurple = true;
@@ -183,11 +184,12 @@ public class StickController : MonoBehaviour
                 gm.GetComponent<GameManager>().speed += gm.GetComponent<GameManager>().speed * (2f / 100f);
                 gm.GetComponent<GameManager>().charJump();
                 gm.GetComponent<GameManager>().HapticJump();
+                gm.GetComponent<GameManager>().ChangeTheColor();
                 gm.GetComponent<GameManager>().fillTheObject();
                 gm.GetComponent<GameManager>().cloudProgress();
             }
             
-            gm.GetComponent<GameManager>().ChangeTheColor();
+
             
             //25-95
             gm.GetComponent<GameManager>().jumperBlue = true;
@@ -229,11 +231,12 @@ public class StickController : MonoBehaviour
                 gm.GetComponent<GameManager>().speed += gm.GetComponent<GameManager>().speed * (2f / 100f);
                 gm.GetComponent<GameManager>().charJump();
                 gm.GetComponent<GameManager>().HapticJump();
+                gm.GetComponent<GameManager>().ChangeTheColor();
                 gm.GetComponent<GameManager>().fillTheObject();
                 gm.GetComponent<GameManager>().cloudProgress();
             }
             
-            gm.GetComponent<GameManager>().ChangeTheColor();
+
             
             //265-335
             gm.GetComponent<GameManager>().jumperYellow = true;
