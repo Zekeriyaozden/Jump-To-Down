@@ -50,11 +50,16 @@ public class GameManager : MonoBehaviour
     public GameObject hapticOffBtn;
     //
     public GameObject filledObject;
-
+    private Slider slider;
+    private float sliderMaxValue;
+    private float sliderValue;
+    public List<GameObject> stars;
+    private bool chartsBool;
     void Start()
     {
-        isHapticOn = true;
-        isSoundOn = true;
+        chartsBool = true;
+        slider = gameObject.GetComponent<GamePlayController>().slider.GetComponent<Slider>();
+        sliderMaxValue = slider.maxValue;
         if (PlayerPrefs.GetInt("Sound", 1) == 1)
         {
             soundOnBtn.SetActive(false);
@@ -94,7 +99,6 @@ public class GameManager : MonoBehaviour
         isGameOver = false;
         flag = false;
         jumperBlue = false;
-        StartCoroutine(FilledObject());
     }
     //-------------------------------------------------------------------------------------
 /*
@@ -379,6 +383,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        sliderValue = slider.value;
         //deneme = Camera.main.WorldToScreenPoint(mainChar.transform.position);
         float s = Camera.main.WorldToScreenPoint(mainChar.transform.position).x;
 
@@ -415,16 +420,31 @@ public class GameManager : MonoBehaviour
         {
             clouds.transform.Translate(new Vector3(0,-1,0) * Time.deltaTime * cloudSpeed);
         }
-        if (skor > PlayerPrefs.GetInt("BestScore",0))
-        {
-            PlayerPrefs.SetInt("BestScore",skor);
-        }
-        UIBestScore.GetComponent<Text>().text = PlayerPrefs.GetInt("BestScore", 0).ToString();
-        UISkor.GetComponent<Text>().text = skor.ToString();
         gameOver();
-        if (isGameOver)
+        if (isGameOver && chartsBool)
+        {
+            charts.SetActive(false);
+            StartCoroutine(FilledObject());
+            chartsBool = false;
+        }
+        if (isGameOver && sliderValue/sliderMaxValue < .5f)
         {
             UIGameOver.SetActive(true);
+            stars[3].SetActive(true);
+        }
+        else if(isGameOver)
+        {
+            if (sliderValue / sliderMaxValue < 75f)
+            {
+             stars[0].SetActive(true);   
+            }else if (sliderValue / sliderMaxValue < 99f)
+            {
+                stars[1].SetActive(true);
+            }
+            else
+            {
+                stars[2].SetActive(true);
+            }
         }
         if (!jumperBlue && flag)
         {
