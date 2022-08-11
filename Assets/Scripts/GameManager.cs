@@ -226,17 +226,20 @@ public class GameManager : MonoBehaviour
         if (1 < materialList.Count)
         {
             gameObject.GetComponent<GamePlayController>().incramentUI();
-            int s = fillObject.transform.GetChild(countFillObject).gameObject.GetComponent<MeshRenderer>().materials
-                .Length;
-            
+            int s = fillObject.transform.GetChild(countFillObject).childCount;
             Material[] ms = new Material[s];
+
+            
+//            fillObject.transform.GetChild(countFillObject).gameObject.GetComponent<MeshRenderer>().materials = ms;
             for (int i = 0; i < s; i++)
             {
-                ms[i] = shaderMaterialList[countFillObject];
+                Material[] mTemp = new Material[1];
+                mTemp[0] = shaderMaterialList[countFillObject];
+                fillObject.transform.GetChild(countFillObject).GetChild(i).gameObject.GetComponent<MeshRenderer>()
+                    .materials = mTemp;
+                StartCoroutine(shaderCor(mTemp[0]));
             }
-            
-            fillObject.transform.GetChild(countFillObject).gameObject.GetComponent<MeshRenderer>().materials = ms;
-            StartCoroutine(shaderCor(shaderMaterialList[countFillObject]));
+
             countFillObject++;
         }
         else
