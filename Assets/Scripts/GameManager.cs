@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     public float horizDir;
     public int screenWidth;
     public GameObject[] gObjSticks;
-    public float screenDevideTo828;
+    //public float screenDevideTo828;
     private int countFillObject;
     public GameObject fillObject;
     //UI
@@ -56,9 +56,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         screenWidth = Screen.width;
-        screenDevideTo828 = ((float)screenWidth) / 828f;
-        mainChar.transform.localScale *= screenDevideTo828;
-        charts.transform.localScale *= screenDevideTo828;
         stickBool = true;
         chartsBool = true;
         slider = gameObject.GetComponent<GamePlayController>().slider.GetComponent<Slider>();
@@ -89,7 +86,6 @@ public class GameManager : MonoBehaviour
             isHapticOn = false;
         }
         countFillObject = 0;
-        screenWidth = Screen.width;
 
         horizDir = 0;
         particleFlag = true;
