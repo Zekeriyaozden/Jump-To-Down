@@ -55,6 +55,16 @@ public class GameManager : MonoBehaviour
     public bool stickBool;
     void Start()
     {
+        int temp = 0;
+        PlayerPrefs.SetInt("Level",level);
+        if (level == 0)
+        {
+            temp = PlayerPrefs.GetInt("Level", 0);
+            if (temp != 0)
+            {
+                SceneManager.LoadScene(temp);
+            }
+        }
         screenWidth = Screen.width;
         stickBool = true;
         chartsBool = true;
@@ -395,7 +405,7 @@ public class GameManager : MonoBehaviour
 
     public void tryAgainBtn()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(level);
         HapticSuccess();
     }
     
@@ -403,7 +413,14 @@ public class GameManager : MonoBehaviour
 
     public void nextLevelBtn()
     {
-        SceneManager.LoadScene(0);
+        if (level == 2)
+        {
+            SceneManager.LoadScene(0);
+        }
+        else
+        {
+            SceneManager.LoadScene(level+1);
+        }
         HapticSuccess();
     }
     
