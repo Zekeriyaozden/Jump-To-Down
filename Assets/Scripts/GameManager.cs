@@ -182,7 +182,7 @@ public class GameManager : MonoBehaviour
         scale = filledObject.transform.localScale;
         for (int i = 0; i <= 200; i++)
         {
-            yield return new WaitForSeconds(.6f / 200f);
+            yield return new WaitForSeconds(.4f / 200f);
             k += 1 / 200f;
             filledObject.transform.position = Vector3.Lerp(pos, new Vector3(-0.9f, -25.3f, pos.z),k);
             filledObject.transform.localScale = Vector3.Lerp(scale, new Vector3(9.5f, 9.5f, 9.5f),k);
@@ -199,7 +199,7 @@ public class GameManager : MonoBehaviour
         scale = filledObject.transform.localScale;
         for (int i = 0; i <= 200; i++)
         {
-            yield return new WaitForSeconds(.6f / 200f);
+            yield return new WaitForSeconds(.4f / 200f);
             k += 1 / 200f;
             filledObject.transform.position = Vector3.Lerp(pos, new Vector3(-0.9f, -1f, pos.z),k);
             filledObject.transform.localScale = Vector3.Lerp(scale, new Vector3(4.5f, 4.5f, 4.5f),k);
@@ -226,8 +226,15 @@ public class GameManager : MonoBehaviour
         if (1 < materialList.Count)
         {
             gameObject.GetComponent<GamePlayController>().incramentUI();
-            Material[] ms = new Material[1];
-            ms[0] = shaderMaterialList[countFillObject];
+            int s = fillObject.transform.GetChild(countFillObject).gameObject.GetComponent<MeshRenderer>().materials
+                .Length;
+            
+            Material[] ms = new Material[s];
+            for (int i = 0; i < s; i++)
+            {
+                ms[i] = shaderMaterialList[countFillObject];
+            }
+            
             fillObject.transform.GetChild(countFillObject).gameObject.GetComponent<MeshRenderer>().materials = ms;
             StartCoroutine(shaderCor(shaderMaterialList[countFillObject]));
             countFillObject++;
