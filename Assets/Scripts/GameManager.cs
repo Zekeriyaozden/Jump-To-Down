@@ -56,7 +56,9 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         screenWidth = Screen.width;
-        screenDevideTo828 = ((float)screenWidth) / 828f; 
+        screenDevideTo828 = ((float)screenWidth) / 828f;
+        mainChar.transform.localScale *= screenDevideTo828;
+        charts.transform.localScale *= screenDevideTo828;
         stickBool = true;
         chartsBool = true;
         slider = gameObject.GetComponent<GamePlayController>().slider.GetComponent<Slider>();
