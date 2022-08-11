@@ -47,11 +47,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _LocationFloat: 0
+    - _LocationFloat: 0.6
     - _Metallic: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Ring: 0.14999925
+    - _Ring: 0.9999992
     - _Smoothness: 0.255
     m_Colors:
     - _Color: {r: 1, g: 0.6784314, b: 0, a: 1}

@@ -53,6 +53,8 @@ public class GameManager : MonoBehaviour
     public List<GameObject> stars;
     private bool chartsBool;
     public bool stickBool;
+    public int level;
+    public GameObject nextLevelObj;
     void Start()
     {
         screenWidth = Screen.width;
@@ -209,21 +211,28 @@ public class GameManager : MonoBehaviour
     
     //-------------------------------------------------------------------------------------
 
-    private IEnumerator shaderCor(Material mt)
+    private IEnumerator shaderCor(Material mt,float first,float scnd)
     {
         float k = 0;
+        mt.SetFloat("_LocationFloat",0.6f);
         for (int i = 0; i < 100; i++)
         {
             yield return new WaitForSeconds(.6f/100f);
             k += 1f / 100f;
-            float s = Mathf.Lerp(-1f, .15f, k);
+            float s = Mathf.Lerp(first, scnd, k);
             mt.SetFloat("_Ring",s);
+        }
+
+        if (level != 0)
+        {
+            mt.SetFloat("_Ring",500f);
         }
     }
     
+    
     public void fillTheObject()
     {
-        if (1 < materialList.Count)
+        if (1 < materialList.Count && level == 0)
         {
             gameObject.GetComponent<GamePlayController>().incramentUI();
             int s = fillObject.transform.GetChild(countFillObject).childCount;
@@ -235,11 +244,23 @@ public class GameManager : MonoBehaviour
             {
                 Material[] mTemp = new Material[1];
                 mTemp[0] = shaderMaterialList[countFillObject];
+                shaderMaterialList[countFillObject].SetFloat("_Ring",-0.15f);
                 fillObject.transform.GetChild(countFillObject).GetChild(i).gameObject.GetComponent<MeshRenderer>()
                     .materials = mTemp;
-                StartCoroutine(shaderCor(mTemp[0]));
+                StartCoroutine(shaderCor(mTemp[0],-0.15f,1f));
             }
 
+            countFillObject++;
+        }
+        else if (1 < materialList.Count && level != 0)
+        {
+            gameObject.GetComponent<GamePlayController>().incramentUI();
+            Material[] mt = new Material[1];
+            mt[0] = shaderMaterialList[countFillObject];
+            shaderMaterialList[countFillObject].SetFloat("_Ring",0f);
+            nextLevelObj.transform.GetChild(countFillObject).gameObject.GetComponent<SkinnedMeshRenderer>().materials =
+                mt;
+            StartCoroutine(shaderCor(shaderMaterialList[countFillObject],0f,15f));
             countFillObject++;
         }
         else
@@ -360,8 +381,8 @@ public class GameManager : MonoBehaviour
 
     public void HapticFail()
     {
-        CanvasSkor.SetActive(false);
-        isGameOver = true;
+        //CanvasSkor.SetActive(false);
+        //isGameOver = true;
         if (isHapticOn)
         {
             MMVibrationManager.Haptic(HapticTypes.Failure, false, true, this);

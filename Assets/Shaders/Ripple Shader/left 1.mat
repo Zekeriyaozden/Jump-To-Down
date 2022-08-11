@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-985800000560469066
+--- !u!114 &-860865204876666262
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GreenColoring 3
-  m_Shader: {fileID: -6465566751694194690, guid: 184bf9287cba7fa43b59eef50ed3d6b5, type: 3}
+  m_Name: left 1
+  m_Shader: {fileID: -6465566751694194690, guid: 3069b55b7c6ab8b41b11f2298bec9a2a, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 2
@@ -47,14 +47,21 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _LocationFloat: 0.6
+    - _Alpha_Node: 1
+    - _Fade: 0.09
+    - _Float: -1.25
+    - _Fresnel_Power: 1.4
     - _Metallic: 0
+    - _Normal_Strength: 10
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Ring: 0.9999992
-    - _Smoothness: 0.255
-    - _Thickness: 0
+    - _Ring: 1
+    - _Smoothness: 0.68
+    - _Wave_Scale: 0.15
+    - _thickness: -0.47
     m_Colors:
-    - _Color: {r: 0.006827116, g: 1, b: 0, a: 0}
-    - _Edge_Color: {r: 0, g: 0, b: 0, a: 0}
+    - _Base_Color: {r: 0.90588236, g: 0.39607844, b: 0, a: 0}
+    - _Fresnel_Color: {r: 0, g: 0.07058859, b: 1, a: 0}
+    - _WaveStartPos: {r: -5.4774137, g: -0.9981165, b: -17.909983, a: 0}
+    - _Wave_Start_position: {r: 0, g: 1.43, b: -0.22, a: 0}
   m_BuildTextureStacks: []

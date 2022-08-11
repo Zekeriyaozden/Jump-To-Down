@@ -141,22 +141,22 @@ public class StickController : MonoBehaviour
                 
                 if (gm.GetComponent<GameManager>().currentColor != 0)
                 {
-                    gm.GetComponent<GameManager>().isGameOver = true;
+                    //gm.GetComponent<GameManager>().isGameOver = true;
                     gm.GetComponent<GameManager>().HapticFail();
                     gm.GetComponent<GameManager>().hitParticle(gm.GetComponent<GameManager>().currentColor);
-                    mainChar.GetComponent<BoxCollider>().enabled = false;
-                    mainChar.transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().enabled = false;
+                    //mainChar.GetComponent<BoxCollider>().enabled = false;
+                    //mainChar.transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().enabled = false;
                     //gm.GetComponent<GameManager>().isGameOver = true;
                 }else
                 {
                     gm.GetComponent<GameManager>().hitParticle(0);
-                    gm.GetComponent<GameManager>().speed += gm.GetComponent<GameManager>().speed * (2f / 100f);
-                    gm.GetComponent<GameManager>().charJump();
-                    gm.GetComponent<GameManager>().HapticJump();
                     gm.GetComponent<GameManager>().ChangeTheColor();
                     gm.GetComponent<GameManager>().fillTheObject();
-                    gm.GetComponent<GameManager>().cloudProgress();
                 }
+                gm.GetComponent<GameManager>().charJump();
+                gm.GetComponent<GameManager>().speed += gm.GetComponent<GameManager>().speed * (2f / 100f);
+                gm.GetComponent<GameManager>().HapticJump();
+                gm.GetComponent<GameManager>().cloudProgress();
 
 
                 
@@ -186,22 +186,22 @@ public class StickController : MonoBehaviour
 
                 if (gm.GetComponent<GameManager>().currentColor != 1)
                 {
-                    gm.GetComponent<GameManager>().isGameOver = true;
+                    //gm.GetComponent<GameManager>().isGameOver = true;
                     gm.GetComponent<GameManager>().HapticFail();
                     gm.GetComponent<GameManager>().hitParticle(gm.GetComponent<GameManager>().currentColor);
-                    mainChar.GetComponent<BoxCollider>().enabled = false;
-                    mainChar.transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().enabled = false;
+                   // mainChar.GetComponent<BoxCollider>().enabled = false;
+                   // mainChar.transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().enabled = false;
                     //gm.GetComponent<GameManager>().isGameOver = true;
                 }else
                 {
                     gm.GetComponent<GameManager>().hitParticle(1);
-                    gm.GetComponent<GameManager>().speed += gm.GetComponent<GameManager>().speed * (2f / 100f);
-                    gm.GetComponent<GameManager>().charJump();
-                    gm.GetComponent<GameManager>().HapticJump();
                     gm.GetComponent<GameManager>().ChangeTheColor();
                     gm.GetComponent<GameManager>().fillTheObject();
-                    gm.GetComponent<GameManager>().cloudProgress();
                 }
+                gm.GetComponent<GameManager>().charJump();
+                gm.GetComponent<GameManager>().speed += gm.GetComponent<GameManager>().speed * (2f / 100f);
+                gm.GetComponent<GameManager>().HapticJump();
+                gm.GetComponent<GameManager>().cloudProgress();
                 
 
                 
@@ -233,22 +233,22 @@ public class StickController : MonoBehaviour
 
                 if (gm.GetComponent<GameManager>().currentColor != 2)
                 {
-                    gm.GetComponent<GameManager>().isGameOver = true;
+                   // gm.GetComponent<GameManager>().isGameOver = true;
                     gm.GetComponent<GameManager>().HapticFail();
                     gm.GetComponent<GameManager>().hitParticle(gm.GetComponent<GameManager>().currentColor);
-                    mainChar.GetComponent<BoxCollider>().enabled = false;
-                    mainChar.transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().enabled = false;
+                    //mainChar.GetComponent<BoxCollider>().enabled = false;
+                    //mainChar.transform.GetChild(0).gameObject.GetComponent<SkinnedMeshRenderer>().enabled = false;
                 }
                 else
                 {
                     gm.GetComponent<GameManager>().hitParticle(2);
-                    gm.GetComponent<GameManager>().speed += gm.GetComponent<GameManager>().speed * (2f / 100f);
-                    gm.GetComponent<GameManager>().charJump();
-                    gm.GetComponent<GameManager>().HapticJump();
                     gm.GetComponent<GameManager>().ChangeTheColor();
                     gm.GetComponent<GameManager>().fillTheObject();
-                    gm.GetComponent<GameManager>().cloudProgress();
                 }
+                gm.GetComponent<GameManager>().charJump();
+                gm.GetComponent<GameManager>().speed += gm.GetComponent<GameManager>().speed * (2f / 100f);
+                gm.GetComponent<GameManager>().HapticJump();
+                gm.GetComponent<GameManager>().cloudProgress();
                 
 
                 
