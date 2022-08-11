@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     public float horizDir;
     public int screenWidth;
     public GameObject[] gObjSticks;
-    // public float screenDevideTo828;
+    public float screenDevideTo828;
     private int countFillObject;
     public GameObject fillObject;
     //UI
@@ -55,6 +55,8 @@ public class GameManager : MonoBehaviour
     public bool stickBool;
     void Start()
     {
+        screenWidth = Screen.width;
+        screenDevideTo828 = ((float)screenWidth) / 828f; 
         stickBool = true;
         chartsBool = true;
         slider = gameObject.GetComponent<GamePlayController>().slider.GetComponent<Slider>();
